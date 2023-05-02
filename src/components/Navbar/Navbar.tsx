@@ -5,6 +5,9 @@ import { MdNotifications } from 'react-icons/md'
 
 import logo from '../../assets/snof-logo.png'
 import profile from '../../assets/profile-pic.png'
+import Notification_popup from '../Notification_popup/Notification_popup'
+import UserAccount_popup from '../userAccount_popup/userAccount_popup'
+import { useState } from 'react'
 
 interface Props {
     setActivateSideBar: Function,
@@ -12,9 +15,40 @@ interface Props {
 }
 
  const Navbar:React.FC<Props>=({setActivateSideBar,activateSideBar}) =>{
+    const [showComponent, setShowComponent] = useState(false);
+    const [showAccountDropdown, setAccountDropdown] = useState(false)
+    const [tasks,setTasks] = useState([
+        {
+             id: 0,
+             text:'Board meeting',
+             time:'10:20PM',
+             duration:'10:20PM to 11:00PM'
+        },
+        {
+            id: 1,
+            text:'taking lunch',
+            time:'10:20PM',
+            duration:'10:20PM to 11:00PM'
+       },
+       {
+        id: 2,
+        text:'Interviewing other members',
+        time:'10:20PM',
+        duration:'10:20PM to 11:00PM'
+    }
+    ])
+
     const consol = ()=>{
         setActivateSideBar(!activateSideBar)
         console.log("it is clicked")
+    }
+
+    function handleClick() {
+        setShowComponent(!showComponent);
+    }
+
+    function handleAccountDetails() {
+        setAccountDropdown(!showAccountDropdown)
     }
     return (
         <div className="nav">
@@ -33,11 +67,13 @@ interface Props {
                 </div>
             </div>
             <div className="nav--right">
-                <span className="icon-holder">
+                <span className="icon-holder"  onClick={handleClick}>
                     <MdNotifications size={40}/>
+                    {showComponent && <Notification_popup tasks={tasks}/>}
                 </span>
-                <div className="person--profile">
+                <div className="person--profile" onClick={handleAccountDetails}>
                     <img src={profile} alt="Profile picture" />
+                    { showAccountDropdown && <UserAccount_popup />}
                 </div>
             </div>
         </div>

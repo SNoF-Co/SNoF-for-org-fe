@@ -1,9 +1,7 @@
 import { ReactNode, useState } from 'react'
 import Navbar from '../components/Navbar/Navbar'
 import "./sample.css"
-import Sidebar from '../components/Sidebar/Sidebar'
-import DashBoard from './DashBoard'
-import { BrowserRouter, Route } from 'react-router-dom'
+import Sidebar from '../components/Sidebar/side'
 // import Analytics from './analytics'
 
 interface Props{
