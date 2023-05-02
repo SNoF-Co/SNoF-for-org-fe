@@ -6,6 +6,7 @@ import { MdNotifications } from 'react-icons/md'
 import logo from '../../assets/snof-logo.png'
 import profile from '../../assets/profile-pic.png'
 import Notification_popup from '../Notification_popup/Notification_popup'
+import UserAccount_popup from '../userAccount_popup/userAccount_popup'
 import { useState } from 'react'
 
 interface Props {
@@ -15,7 +16,7 @@ interface Props {
 
  const Navbar:React.FC<Props>=({setActivateSideBar,activateSideBar}) =>{
     const [showComponent, setShowComponent] = useState(false);
-
+    const [showAccountDropdown, setAccountDropdown] = useState(false)
     const [tasks,setTasks] = useState([
         {
              id: 0,
@@ -45,6 +46,10 @@ interface Props {
     function handleClick() {
         setShowComponent(!showComponent);
     }
+
+    function handleAccountDetails() {
+        setAccountDropdown(!showAccountDropdown)
+    }
     return (
         <div className="nav">
             <div className="nav--left">
@@ -66,8 +71,9 @@ interface Props {
                     <MdNotifications size={40}/>
                     {showComponent && <Notification_popup tasks={tasks}/>}
                 </span>
-                <div className="person--profile">
+                <div className="person--profile" onClick={handleAccountDetails}>
                     <img src={profile} alt="Profile picture" />
+                    { showAccountDropdown && <UserAccount_popup />}
                 </div>
             </div>
         </div>
