@@ -4,8 +4,7 @@
     padding: 10px;
     /* height: 100%; */
     overflow: hidden;
-    overflow-y: scroll;
-    top: 30px;
+    top: 100px;
     left: 280px;
     margin-top: 5%;
 }
