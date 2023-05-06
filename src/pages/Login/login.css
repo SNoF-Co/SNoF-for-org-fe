@@ -79,3 +79,9 @@ h2 {
 .password-hide-icon {
   display: none;
 }
+
+.login > form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -288,8 +288,8 @@ export default function CustomCalendar() {
             </div>
         </div>
     )
-<<<<<<< HEAD
+// <<<<<<< HEAD
 }
-=======
-}
->>>>>>> acdaae4482f43fa4c0266fbebb83bbcbaf9f9676
+// =======
+// }
+// >>>>>>> acdaae4482f43fa4c0266fbebb83bbcbaf9f9676
