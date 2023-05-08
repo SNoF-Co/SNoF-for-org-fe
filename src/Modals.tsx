@@ -1,7 +1,7 @@
 import React from 'react';
 import "./modal.css"
 import { useState } from 'react';
-import addDots from './assets/three-dots.svg'
+// import './assets/'
 // import {addDots} from './assets/three-dots'
 import {toast} from "react-toastify"
 
@@ -32,7 +32,7 @@ function Modal() {
 
   return (
     <>
-      <button  onClick={openModal} style={{position:'absolute',backgroundColor:'none',zIndex:'99'}} className="checkTask"><img src={addDots}></img></button>
+      <button  onClick={openModal} style={{position:'absolute',backgroundColor:'none',zIndex:'99'}} className="checkTask"><img src='./assets/three-dots.svg'></img></button>
       
       {isOpen && (
         <div className="modal">
