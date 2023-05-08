@@ -1,6 +1,6 @@
 import React from "react";
 import "./schedule.css"
-import moreDots from "../../assets/three-dots.svg"
+import moreDots from "../../assets/three-dots.tsx"
 import Modal from "../../Modals";
 
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import "./modal.css"
 import { useState } from 'react';
-import addDots from "./assets/three-dots.svg"
+import addDots from './assets/three-dots.svg'
+// import {addDots} from './assets/three-dots'
 import {toast} from "react-toastify"
 
 function Modal() {
