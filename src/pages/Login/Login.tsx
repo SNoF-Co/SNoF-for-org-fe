@@ -9,7 +9,7 @@ import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Field from "../../components/Field/Field";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 
-import Logo from "../../assets/snof-logo.png";
+// import Logo from "../../assets/snof-logo.png";
 import { FirstEllipse } from "./../../assets/svg";
 import { SecondEllipse } from "./../../assets/svg";
 
@@ -67,7 +67,7 @@ export default function Login() {
       </div>
 
       <div className="logo">
-        <img src={Logo} alt="SNoF-logo" />
+        {/* <img src={Logo} alt="SNoF-logo" /> */}
       </div>
       <h2>Login into your Organisation account</h2>
       <form onSubmit={handleFormSubmit}>
