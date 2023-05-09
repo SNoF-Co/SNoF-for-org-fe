@@ -322,7 +322,7 @@ const handleFormSubmit = ()=>{
 
                             </ul>
                             <div className="addOrganisation">
-                                <button className="addOrgan"><img src={plusCirc} style={{width:'13%',}}/> Add</button>
+                                <button className="addOrgan"><img src='' style={{width:'13%',}}/> Add</button>
                             </div>
                             
                         </div>
