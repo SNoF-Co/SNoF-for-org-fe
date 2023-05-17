@@ -76,6 +76,7 @@ form{
 }
   
 .videos, .images{  
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
 }
