@@ -1,8 +1,9 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect,useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import {useNavigate} from "react-router-dom"
 
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import Field from "../../components/Field/Field";
@@ -10,6 +11,7 @@ import { FirstEllipse } from "./../../assets/svg";
 import { SecondEllipse } from "./../../assets/svg";
 import Logo from "./../../assets/snof-logo.png";
 import "./RegisterPage.css";
+import { toast } from "react-toastify";
 
 export default function RegisterPage() {
   const ref = useRef(null);
@@ -91,8 +93,8 @@ export default function RegisterPage() {
 
   const submitButtonValue = "Sign Up";
   const type = "text";
-  const orgName = "orgName";
-  const id = "orgName";
+  const orgName = "name";
+  const id = "name";
   const orgLabel = "Organization name";
   const selectLabel = "Organization type";
 
@@ -102,14 +104,50 @@ export default function RegisterPage() {
   const locationNumberId = "locNumberId";
 
   const emailLabel = "Email";
-  const emailType = "email";
-  const emailName = "orgEmail";
-  const emailId = "orgEmail";
+  const emailType = "email"
+  const emailName = "email";
+  const emailId = "email";
 
   const passwdLabel = "Password";
   const passwdType = "password";
-  const passwdName = "passwd";
-  const passwdId = "orgPasswd";
+  const passwdName = "password";
+  const passwdId = "password";
+
+  const navigate = useNavigate()
+  
+  const [formData, setFormData] = useState({name:"",email: "", password: ""})
+  
+
+  const handleFormSubmit = async (e:any)=>{
+    e.preventDefault()
+
+    const res = await fetch(`${import.meta.env.VITE_BASE_URL}/register`, {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {"Content-Type": "application/json"}
+    })
+
+    const data = await res.json()
+
+    console.log(data);
+    if(data.message === "User created successfully") {
+      toast.done("Register was successfull")
+      navigate(`/login`)
+    }
+
+  }
+  
+  const handleChange = (e: any) => {
+    const {name, value} = e.target
+
+    setFormData((oldData: any) => {
+      return {
+        ...oldData,
+        [name] : value
+      }
+    })
+    console.log(formData);
+  }
 
   return (
     <div className="register">
@@ -120,7 +158,7 @@ export default function RegisterPage() {
       <div className="logo">
         <img src={Logo} alt="SNoF-logo" />
       </div>
-      <form action="#" method="post">
+      <form>
         <h2 className="text-center">Set up your account</h2>
         {/* Progress bar */}
         <div className="progress-bar">
@@ -135,7 +173,7 @@ export default function RegisterPage() {
 
         {/* Steps */}
         <div className="form-step form-step-active">
-          <Field labelName={orgLabel} type={type} name={orgName} id={id} />
+          <Field labelName={orgLabel} type={type} name={orgName} id={id} value={formData.name} onChange={handleChange}/>
 
           <div className="">
             <a href="#" className="btn btn-next width-50 ml-auto">
@@ -143,7 +181,7 @@ export default function RegisterPage() {
             </a>
           </div>
         </div>
-        <div className="form-step">
+        {/* <div className="form-step">
           <div className="locations">
             <Field
               labelName={locationNumberLabel}
@@ -160,19 +198,24 @@ export default function RegisterPage() {
               Next
             </a>
           </div>
-        </div>
+        </div> */}
         <div className="form-step">
           <Field
-            labelName={emailLabel}
-            type={emailType}
-            name={emailName}
-            id={emailId}
+          labelName={emailLabel}
+          type={emailType}
+          name={emailName}
+          id={emailId}
+          value={formData.email}
+          onChange={handleChange}
+  
           />
           <Field
             labelName={passwdLabel}
             type={passwdType}
             name={passwdName}
             id={passwdId}
+            value={formData.password}
+            onChange={handleChange}
           />
           <div className="password-hide">
             <FontAwesomeIcon
@@ -182,7 +225,7 @@ export default function RegisterPage() {
             <FontAwesomeIcon className="password-hide-icon" icon={faEyeSlash} />
           </div>
 
-          <div className="">
+          <div onClick={handleFormSubmit}>
             <SubmitButton buttonValue={submitButtonValue} />
           </div>
         </div>

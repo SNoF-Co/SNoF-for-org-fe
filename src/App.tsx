@@ -68,6 +68,8 @@ const [activateSideBar,setActivateSideBar] = useState(true)
         <Route path="/settings/about" element={<Sample><Settings><ProfilePage/></Settings></Sample>}/>
         <Route path="/settings/terms_of_service" element={<Sample><Settings><ProfilePage/></Settings></Sample>}/>
         <Route path="/logout" element={<Sample><Logout/></Sample>}/>
+        <Route path="/videos" element={<Sample><PlayerV/></Sample>}/>
+        <Route path="/images" element={<Sample><Shower/></Sample>}/>
       </Routes>
     </Router>
   );
