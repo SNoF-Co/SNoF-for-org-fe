@@ -5,7 +5,6 @@ import React from "react";
 // import right from "../assets/chevron-right.svg"
 // import caret from "../assets/caret-down-fill.svg"
 import Calender from "../components/Calender/Calender";
-
 import Axios from "axios";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
@@ -86,7 +85,6 @@ const [tasks,setTasks] = useState([
 const [organsm,setOrgansm] = useState({
     name: 'Morncast'
 })
-
 const [organisations,setOrganisations] = useState<Organisation[]>([
     {
         name: "Morncast"
@@ -150,7 +148,6 @@ useEffect(()=>{
         setTasks(results.data)
         setCompleted(results.data)
     })
-
 },[])
 // -----------------------------------------------------------------------------------------------------------   
 
