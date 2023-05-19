@@ -1,23 +1,23 @@
-
 import React from "react";
-import schedulecomp from "../assets/image3.png"
-import addIcon from "../assets/plus-circle1.png"
-import deleteIcon from "../assets/x-circle1.png"
-import right from "../assets/chevron-right.svg"
-import caret from "../assets/caret-down-fill.svg"
+// import schedulecomp from "../assets/image3.png"
+// import addIcon from "../assets/plus-circle1.png"
+// import deleteIcon from "../assets/x-circle1.png"
+// import right from "../assets/chevron-right.svg"
+// import caret from "../assets/caret-down-fill.svg"
 import Calender from "../components/Calender/Calender";
+
+import Axios from "axios";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
 import './dashboard.css'
-import plus from "../assets/+.svg"
-import plusCirc from "../assets/plus-circle-dotted.svg"
+// import plus from "../assets/+.svg"
+// import plusCirc from "../assets/plus-circle-dotted.svg"
 import Notification from "../components/Notification/Notification"
 import { useState,useEffect } from "react";
-import check from "../assets/check1.png"
-import calenderimg from "../assets/calendar-check1.png"
-import dots from "../assets/three-dots.tsx"
-import member2 from "../assets/Ellipse48(1).png"
-
+// import check from "../assets/check1.png"
+// import calenderimg from "../assets/calendar-check1.png"
+// import dots from "../assets/three-dots.tsx"
+// import member2 from "../assets/Ellipse48(1).png"
 
 const  members=[
     {
@@ -56,27 +56,26 @@ export interface Organisation {
 const DashBoard : React.FC<Props>= ({username,activateSideBar})=>{
 const [memberModal,setMemberModal] = useState(false);
 
-
+const [timeofSchedule,setTimeofSchedule] = useState('');
 const [background,setbackground] = useState(false)
-
 const [openDrop,setOpenDrop] = useState(false)
 // -------------------------------------------------FOR TASKS VARIABLES--------------------------------------------------------
 const [tasks,setTasks] = useState([
     {
          id: 0,
-         text:'Board meeting',
+         title:'Board meeting',
          time:'10:20PM',
-         duration:'10:20PM to 11:00PM'
+         desc:'10:20PM to 11:00PM'
     },
     {
         id: 1,
-        text:'taking lunch',
+        title:'taking lunch',
         time:'10:20PM',
         duration:'10:20PM to 11:00PM'
    },
    {
     id: 2,
-    text:'Interviewing other members',
+    title:'Interviewing other members',
     time:'10:20PM',
     duration:'10:20PM to 11:00PM'
 }
@@ -104,18 +103,17 @@ const [organisations,setOrganisations] = useState<Organisation[]>([
 
 const [completed,setCompleted]= useState([
     {
-        task: 'Check the production of the week',
+        description:'Check the production of the week',
         time: '11:30'
     },
     {
-        task: 'Check the production of the week',
+        description: 'Check the production of the week',
         time: '11:30'
     },{
-        task: 'Check the production of the week',
+        description: 'Check the production of the week',
         time: '11:30'
     }
 ])
-
 // --------------FOR ADD SCHEDULE MODAL-------------------------
 const [openAddScheduleModal,setOpenAddSchedule] = useState(false) 
 
@@ -125,7 +123,6 @@ const openAddSchedule = ()=>{
 const closeAddSchedule = ()=>{
     setOpenAddSchedule(false)
 }
-
 const deleteNotifications = ()=>{
     setTasks((tasks)=>{
         return tasks.filter((task) => task.id > 3);
@@ -133,19 +130,34 @@ const deleteNotifications = ()=>{
 }
 
 // --------------------------HANDLING ADD SCHEDULE FORM SUBMIT----------------------------------------------
-
+const [title,setTitle] = useState('');
+const [desc,setDesc] = useState('')
 const handleFormSubmit = ()=>{
-
+    // console.log(daata.value)
+    Axios.post('http://localhost:2000/v1/api/schedules',{
+        title:title,
+        time:timeofSchedule,
+        description:desc,
+    }).then((data)=>{
+        closeAddSchedule
+        console.log(data)
+    }).catch((err)=>console.log(err))    
 }
+useEffect(()=>{
+    // Axios.get()
+    Axios.get('http://localhost:2000/v1/api/schedules').then((results)=>{
+        console.log(results.data)
+        setTasks(results.data)
+        setCompleted(results.data)
+    })
+
+},[])
 // -----------------------------------------------------------------------------------------------------------   
 
     return(
         <main className={ !activateSideBar ? 'coverwidth' : ''}>
             <div className={"container-hero" + `${ activateSideBar? ' coverhero' : ''}`}>
                 {/* --------for the left content */}
-
-            
-                
                 <div className="container-left" id="f">
                    <div className="welcome-container">
                     <h4>Welcome back {username}</h4>
@@ -158,35 +170,37 @@ const handleFormSubmit = ()=>{
                     <button className="button-view-schedule">Today's schedule</button>
                     </div>
 
-                    <img src={schedulecomp} />
+                    {/* <img src={"../assets/image3.png"}/> */}
                 
                    </div>
                    <div className="addTask">
-                    <button className="addSchedule" onClick={openAddSchedule}><img src={addIcon} style={{ width: '17%',marginLeft:'2%'}} /><h6 style={{}}> ADD SCHEDULE</h6></button>
+                    <button className="addSchedule" onClick={openAddSchedule}><img src={"../assets/plus-circle1.png"} style={{ width: '17%',marginLeft:'2%'}} /><h6 style={{}}> ADD SCHEDULE</h6></button>
                     
                     { openAddScheduleModal && (
                         (
                             <div className="modal">
                                 <div className="overlay" >
                                     <div className="addScheduleModal">
-
                                         <button className='close-modal' onClick={closeAddSchedule}  style={{borderRadius:'10px', borderColor:'#333'}}>close</button>
-
                                         <div className="addAScheduleForm">
                                             <form className="SchedulemodalForm" onSubmit={(e)=>{
-                                                e.preventDefault()
-                                                handleFormSubmit
+                                                // e.preventDefault()
+                                                handleFormSubmit()
                                                 }}>
                                                 <h3>Schedule Event</h3>
 
                                                 <div className="form-control">
                                                     <label>Time: </label>
-                                                    <input type="time" required/>
+                                                    <input type="time" required onChange={(e)=>setTimeofSchedule(e.target.value)}/>
                                                 </div>
 
                                                 <div className="form-control">
                                                     <label>Event: </label>
-                                                    <textarea placeholder="Eg. Going to sleep" required></textarea>
+                                                    <textarea placeholder="Eg. waking up early not miss the train" onChange={(e)=>setDesc(e.target.value)} required></textarea>
+                                                </div>
+                                                <div className="form-control">
+                                                    <label>title: </label>
+                                                    <textarea placeholder="Eg. Going For Holidays" onChange={(e)=>setTitle(e.target.value)} required></textarea>
                                                 </div>
 
                                                 <div className="form-control">
@@ -199,8 +213,7 @@ const handleFormSubmit = ()=>{
                                                         <option value="Ascending">Ascending</option>
                                                     </select>
                                                 </div>
-
-                                                <div className="form-control">
+                                                {/* <div className="form-control">
                                                     <label>Notify for: </label>
                                                     <select required>
                                                     <option value="5 Minutes">5 Minutes</option>
@@ -210,11 +223,7 @@ const handleFormSubmit = ()=>{
                                                     <option value="2 Hours">2 Hours</option>
                                                     <option value="1 day">1 Day</option>
                                                     </select>
-                                                    
-                                                    
-
-                                                </div>
-
+                                                </div> */}
                                                 <div className="notifyday">
                                                     <label style={{fontSize:'18px'}}>Notify on </label>
                                                     <div className="days">
@@ -226,13 +235,12 @@ const handleFormSubmit = ()=>{
                                                     <button className="notifyDay" onClick={()=>setbackground(!background)}>Sat</button>
                                                     <button className="notifyDay" onClick={()=>setbackground(!background)}>Sun</button>
                                                     </div>
-                                                    
                                                 </div>
 
                                                 <div className="form-control" >
                                                     <label>Location: </label>
                                                     <select required>
-                                                        <option value=""></option>
+                                                        <option value="" nonce="true"></option>
                                                         <option value="">Kigali</option>
                                                         <option value="">Muhanga</option>
                                                         <option value="">Newyork</option>
@@ -240,7 +248,8 @@ const handleFormSubmit = ()=>{
                                                 </div>
 
                                                 <div className="addmodalbuttons">
-                                                    <button className="save">Save</button>
+                                                    {/* <button className="save">Save</button> */}
+                                                    <input type="submit" value="save" className="save" style={{borderRadius:'10px'}}/>
                                                     <button className="cancel" onClick={closeAddSchedule}>cancel</button>
                                                 </div>
                                                 
@@ -251,16 +260,12 @@ const handleFormSubmit = ()=>{
                             </div>
                         )
                     )
-                        
                     }
-
                    </div>
-
                    <div className="notifications-placeholder">
-
                         <div className="notif-header">
                             <h5 style={{paddingTop:'1rem'}}>Notifications</h5>
-                        <button className="deleteNotification"  onClick={deleteNotifications} style={{cursor:'pointer'}}><img src={deleteIcon} style={{ width: '17%',fontSize:'21px'}} /><h6 style={{color:'#b73434'}}> DELETE</h6></button>
+                        <button className="deleteNotification"  onClick={deleteNotifications} style={{cursor:'pointer'}}><img src="../assets/plus-circle1.png" style={{ width: '17%',fontSize:'21px'}} /><h6 style={{color:'#b73434'}}> DELETE</h6></button>
                         </div>
 
                         <div id="notifications" className="notification-container">
@@ -268,24 +273,24 @@ const handleFormSubmit = ()=>{
 
                         </div>
 
-                        <h6 style={{alignItems:'center',cursor:'pointer',textAlign:'right'}}>View more notifications <span>  <img src={right} style={{height:'10px',padding:'3px 4px 0px',color:'#10926E'}}/></span></h6>
+                        <h6 style={{alignItems:'center',cursor:'pointer',textAlign:'right',color:'green'}}>View more notifications <span>  <img src="../assets/chevron-right.svg" style={{height:'10px',padding:'3px 4px 0px',color:'#10926E'}}/></span></h6>
                    </div>
 
                    <div className="completedTask-placeholder" >
                         <div className="completed-header">
-                            <h5 style={{paddingTop:'1rem'}}>Completed Tasks</h5>
+                            <h5 style={{paddingTop:'1rem'}}>Tasks</h5>
                         </div>
 
-                         {completed.map((complete, index)=>{
+                         {completed.map((completedx,index)=>{
                             return (
                                 <>
-                                    <div className="Completed-Task" key={index}><img src={calenderimg}/> {complete.task} <img src={check} style={{position:'absolute',right:'0%'}}/></div>
+                                    <div className="Completed-Task" key={index}> {completedx?.description} </div>
                                 </>
-                                            )
+                            )
                                 })
                             }
 
-                        <h6 style={{alignItems:'center',cursor:'pointer',textAlign:'right'}}>View more content <span>  <img src={right} style={{height:'10px',padding:'3px 4px 0px'}}/></span></h6>
+                        <h6 style={{alignItems:'center',cursor:'pointer',textAlign:'right',color:"green"}}>View more content</h6>
 
                    </div>
 
@@ -297,13 +302,10 @@ const handleFormSubmit = ()=>{
                             <h6>Organisation:</h6>
                             <div className="select-organsm" style={{display:'flex',gap:'5%'}}><h6 className="selected">{organsm.name}</h6>
                                 <span className={`select-caret ${ openDrop ? 'rotate-caret' : ''}`}>
-                                    <img src={caret}/>
+                                    <img src="../assets/caret-down-fill.svg"/>
                                 </span>
                             </div>
-                            
-                            
                         </div>
-                        
                     </div>
                     { openDrop ? '' : ''}
                     { openDrop && (
@@ -311,13 +313,12 @@ const handleFormSubmit = ()=>{
                             <h6 style={{fontSize:'17px'}}>Choose the Organisation</h6>
 
                             <ul className="dropdown-menu">
-                              
                               {organisations.map(organisation => {
                                 return <div className="dropdown-item" onClick={()=>{
                                     setOrgansm({name: organisation.name});
                                     setOpenDrop(!openDrop);
 
-                                }}><img src={check}/> {organisation.name}</div>
+                                }}><img src="../assets/check1.png"/> {organisation.name}</div>
                             })}  
 
                             </ul>
@@ -327,13 +328,8 @@ const handleFormSubmit = ()=>{
                             
                         </div>
                     )}
-                        
-
-                        
-
                          < Calender month={nameOfMonth} date={date} day={day} openAddSchedule={openAddSchedule}/>
-
-                         <ToastContainer
+                         {/* <ToastContainer
                            position="top-right"
                            autoClose={3500}
                            hideProgressBar={false}
@@ -344,7 +340,7 @@ const handleFormSubmit = ()=>{
                            draggable
                            pauseOnHover
                            theme="colored"
-                         />
+                         /> */}
                          
                          <div className="team-members-container">
                             <div className="title">
@@ -354,9 +350,9 @@ const handleFormSubmit = ()=>{
                                      {members.map((member)=>{
                                         return (
                                             <div className="teamMember" style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:'87%',height:'20%',border:'1px #CDC2C2 solid',borderRadius:'10px'}}>
-                                                <img src={member2} /> 
+                                                <img src="../assets/Ellipse48(1).png" /> 
                                                 <h3 style={{fontSize:'15px',textAlign:'left'}}>{member.title}</h3> 
-                                                <img src={dots}  onClick= {()=>{setMemberModal(!memberModal)}}/> 
+                                                <img src="../assets/three-dots.tsx" onClick= {()=>{setMemberModal(!memberModal)}}/> 
                                             </div>
                                         )
                                     })} 
@@ -380,7 +376,7 @@ const handleFormSubmit = ()=>{
                               )} 
 
                             <div className="addTeamMember">
-                                <button className="addTeam"><img src={plus} style={{width:'13%'}}/> <h4 style={{fontSize:'13px'}}>Add a team-mate</h4></button>
+                                <button className="addTeam"><img src="../assets/+.svg" style={{width:'13%'}}/> <h4 style={{fontSize:'13px'}}>Add a team-mate</h4></button>
                             </div>
                          </div>
 
