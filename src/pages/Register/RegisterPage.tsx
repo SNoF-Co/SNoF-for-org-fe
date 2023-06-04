@@ -1,9 +1,9 @@
-import { useRef, useEffect,useState } from "react";
+import { useRef, useEffect, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import Field from "../../components/Field/Field";
@@ -114,36 +114,36 @@ export default function RegisterPage() {
   const passwdId = "password";
 
   const navigate = useNavigate()
-  
-  const [formData, setFormData] = useState({name:"",email: "", password: ""})
-  
 
-  const handleFormSubmit = async (e:any)=>{
+  const [formData, setFormData] = useState({ name: "", locations:null, email: "", password: "" })
+
+
+  const handleFormSubmit = async (e: any) => {
     e.preventDefault()
 
     const res = await fetch(`${import.meta.env.VITE_BASE_URL}/register`, {
       method: "POST",
       body: JSON.stringify(formData),
-      headers: {"Content-Type": "application/json"}
+      headers: { "Content-Type": "application/json" }
     })
 
     const data = await res.json()
 
     console.log(data);
-    if(data.message === "User created successfully") {
+    if (data.message === "User created successfully") {
       toast.done("Register was successfull")
       navigate(`/login`)
     }
 
   }
-  
+
   const handleChange = (e: any) => {
-    const {name, value} = e.target
+    const { name, value } = e.target;
 
     setFormData((oldData: any) => {
       return {
         ...oldData,
-        [name] : value
+        [name]: value
       }
     })
     console.log(formData);
@@ -173,7 +173,7 @@ export default function RegisterPage() {
 
         {/* Steps */}
         <div className="form-step form-step-active">
-          <Field labelName={orgLabel} type={type} name={orgName} id={id} value={formData.name} onChange={handleChange}/>
+          <Field labelName={orgLabel} type={type} name={orgName} id={id} value={formData.name} onChange={handleChange} />
 
           <div className="">
             <a href="#" className="btn btn-next width-50 ml-auto">
@@ -181,13 +181,15 @@ export default function RegisterPage() {
             </a>
           </div>
         </div>
-        {/* <div className="form-step">
+        <div className="form-step">
           <div className="locations">
             <Field
               labelName={locationNumberLabel}
               type={locationNumberType}
               name={locationNumberName}
               id={locationNumberId}
+              value={formData.locations}
+              onChange={handleChange}
             />
           </div>
           <div className="btn-group">
@@ -198,16 +200,16 @@ export default function RegisterPage() {
               Next
             </a>
           </div>
-        </div> */}
+        </div>
         <div className="form-step">
           <Field
-          labelName={emailLabel}
-          type={emailType}
-          name={emailName}
-          id={emailId}
-          value={formData.email}
-          onChange={handleChange}
-  
+            labelName={emailLabel}
+            type={emailType}
+            name={emailName}
+            id={emailId}
+            value={formData.email}
+            onChange={handleChange}
+
           />
           <Field
             labelName={passwdLabel}
