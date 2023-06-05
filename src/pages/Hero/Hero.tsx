@@ -19,7 +19,7 @@ import Notification from "../../components/Notification/Notification"
 import { useState,useEffect } from "react";
 import check from "../../assets/check1.png"
 import calenderimg from "../../assets/calendar-check1.png"
-import dots from "../../assets/three-dots.tsx"
+import dots from "../../assets/three-dots.svg"
 import member2 from "../../assets/Ellipse48(1).png"
 
 
