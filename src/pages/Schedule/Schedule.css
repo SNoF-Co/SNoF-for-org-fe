@@ -1,10 +1,17 @@
 .schedule--container {
     position: absolute;
     /* width: 100%; */
+<<<<<<< HEAD
     padding: 10px;
+=======
+    padding: 10px 20px 10px 10px;
+    top: 120px;
+    left: 280px;
+>>>>>>> a869de8 (resolve rebase conflicts)
     /* height: 100%; */
     overflow: hidden;
     overflow-y: scroll;
     top: 30px;
     left: 280px;
+    margin-top: 5%;
 }

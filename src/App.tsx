@@ -61,11 +61,13 @@ const [activateSideBar,setActivateSideBar] = useState(true)
         <Route path="/dashboard" element={<Sample><DashBoard username='Mubaraka Sh.' activateSideBar={activateSideBar}/></Sample>}/>
         <Route path="/analytics" element={<Sample><Analytics tasks={tasks}/></Sample>}/>
         <Route path="/schedule" element={<Sample><Schedule /></Sample>}/>
+        <Route path="/dashboard" element={<Sample><DashBoard username='Mubaraka Sh.' activateSideBar={activateSideBar}/></Sample>}/>
+        <Route path="/analytics" element={<Sample><Analytics tasks={tasks}/></Sample>}/>
+        <Route path="/schedule" element={<Sample><Schedule tasks={singleTask}/></Sample>}/>
         <Route path="/feedback" element={<Sample><FeedbackPage/></Sample>} />
         <Route path="/help" element={<Sample><Help/></Sample>} />
         <Route path="/settings" element={<Sample><Settings/></Sample>} />
         <Route path="/logout" element={<Sample><Logout/></Sample>} />
-
       </Routes>
     </Router>
   );
