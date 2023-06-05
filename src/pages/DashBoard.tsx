@@ -6,6 +6,7 @@ import deleteIcon from "../assets/x-circle1.png"
 import right from "../assets/chevron-right.svg"
 import caret from "../assets/caret-down-fill.svg"
 import Calender from "../components/Calender/Calender";
+import Axios from "axios";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
 import './dashboard.css'
@@ -87,7 +88,6 @@ const [tasks,setTasks] = useState([
 const [organsm,setOrgansm] = useState({
     name: 'Morncast'
 })
-
 const [organisations,setOrganisations] = useState<Organisation[]>([
     {
         name: "Morncast"
@@ -133,10 +133,27 @@ const deleteNotifications = ()=>{
 }
 
 // --------------------------HANDLING ADD SCHEDULE FORM SUBMIT----------------------------------------------
-
+const [title,setTitle] = useState('');
+const [desc,setDesc] = useState('')
 const handleFormSubmit = ()=>{
-
+    // console.log(daata.value)
+    Axios.post('http://localhost:2000/v1/api/schedules',{
+        title:title,
+        time:timeofSchedule,
+        description:desc,
+    }).then((data)=>{
+        closeAddSchedule
+        console.log(data)
+    }).catch((err)=>console.log(err))    
 }
+useEffect(()=>{
+    // Axios.get()
+    Axios.get('http://localhost:2000/v1/api/schedules').then((results)=>{
+        console.log(results.data)
+        setTasks(results.data)
+        setCompleted(results.data)
+    })
+},[])
 // -----------------------------------------------------------------------------------------------------------   
 
     return(
