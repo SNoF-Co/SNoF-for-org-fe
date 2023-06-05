@@ -1,9 +1,8 @@
 .analytics-page-container{
-    width: 100%;
+    width: 85%;
     height: 123vh;
     margin-top: 10vh;
     padding-left: 2%;
-    border: 1px solid ;
 }
 .container--upper{
     height: 109vh;
