@@ -16,7 +16,9 @@ const Notifications:React.FC<Props> = ({tasks})=>{
                 return (
 
                     <div className="notification">
-                     <h3>It's remaining for {task.title}</h3>
+
+                    
+                     <h3>It's remaining for {task.text}</h3>
                 
                     </div>)
                      

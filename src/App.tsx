@@ -58,7 +58,7 @@ const [activateSideBar,setActivateSideBar] = useState(true)
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<RegisterPage />} />
-        <Route path="/dashboard" element={<Sample><DashBoard username='habimana jean de dieu' activateSideBar={activateSideBar}/></Sample>}/>
+        <Route path="/dashboard" element={<Sample><DashBoard username='Mubaraka Sh.' activateSideBar={activateSideBar}/></Sample>}/>
         <Route path="/analytics" element={<Sample><Analytics tasks={tasks}/></Sample>}/>
         <Route path="/schedule" element={<Sample><Schedule /></Sample>}/>
         <Route path="/feedback" element={<Sample><FeedbackPage/></Sample>} />
