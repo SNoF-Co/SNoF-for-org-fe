@@ -57,6 +57,12 @@ const [memberModal,setMemberModal] = useState(false);
 
 const [timeofSchedule,setTimeofSchedule] = useState('');
 const [background,setbackground] = useState(false)
+const [background1,setbackground1] = useState(false)
+const [background2,setbackground2] = useState(false)
+const [background3,setbackground3] = useState(false)
+const [background4,setbackground4] = useState(false)
+const [background5,setbackground5] = useState(false)
+const [background6,setbackground6] = useState(false)
 const [openDrop,setOpenDrop] = useState(false)
 // -------------------------------------------------FOR TASKS VARIABLES--------------------------------------------------------
 const [tasks,setTasks] = useState([
@@ -127,6 +133,7 @@ const deleteNotifications = ()=>{
     })
 }
 
+
 // --------------------------HANDLING ADD SCHEDULE FORM SUBMIT----------------------------------------------
 const [title,setTitle] = useState('');
 const [desc,setDesc] = useState('')
@@ -134,14 +141,16 @@ const handleFormSubmit = ()=>{
     // console.log(daata.value)
     Axios.post('http://localhost:2000/v1/api/schedules',{
         title:title,
-        time:timeofSchedule,
+        start_time:(new Date().getHours()+":"+new Date().getMinutes()),
         description:desc,
+        end_time:timeofSchedule
     }).then((data)=>{
         closeAddSchedule
         console.log(data)
     }).catch((err)=>console.log(err))    
 }
 useEffect(()=>{
+    console.log(new Date().getHours()+":"+new Date().getMinutes())
     // Axios.get()
     Axios.get('http://localhost:2000/v1/api/schedules').then((results)=>{
         console.log(results.data)
@@ -200,7 +209,7 @@ useEffect(()=>{
                                                     <textarea placeholder="Eg. Going For Holidays" onChange={(e)=>setTitle(e.target.value)} required></textarea>
                                                 </div>
 
-                                                <div className="form-control">
+                                                {/* <div className="form-control">
                                                     <label>Sound: </label>
                                                     <select required>
                                                         <option value="chimes">Chimes</option>
@@ -209,7 +218,7 @@ useEffect(()=>{
                                                         <option value="Echo">Echo</option>
                                                         <option value="Ascending">Ascending</option>
                                                     </select>
-                                                </div>
+                                                </div> */}
                                                 {/* <div className="form-control">
                                                     <label>Notify for: </label>
                                                     <select required>
@@ -222,15 +231,15 @@ useEffect(()=>{
                                                     </select>
                                                 </div> */}
                                                 <div className="notifyday">
-                                                    <label style={{fontSize:'18px'}}>Notify on </label>
+                                                    <label style={{fontSize:'18px',padding:'5px 10px'}}>Notify on </label>
                                                     <div className="days">
-                                                    <button className="notifyDay" onClick={()=>setbackground(!background)}>Mon</button>
-                                                    <button className="notifyDay" onClick={()=>setbackground(!background)}>Tue</button>
-                                                    <button className="notifyDay" onClick={()=>setbackground(!background)}>Wed</button>
-                                                    <button className="notifyDay" onClick={()=>setbackground(!background)}>Thur</button>
-                                                    <button className="notifyDay" onClick={()=>setbackground(!background)}>Fri</button>
-                                                    <button className="notifyDay" onClick={()=>setbackground(!background)}>Sat</button>
-                                                    <button className="notifyDay" onClick={()=>setbackground(!background)}>Sun</button>
+                                                    <button className="notifyDay" onClick={()=>setbackground(!background)} style={{backgroundColor:background && '#10926E'}}>Mon</button>
+                                                    <button className="notifyDay" onClick={()=>setbackground1(!background1)} style={{backgroundColor:background1 && '#10926E'}} >Tue</button>
+                                                    <button className="notifyDay" onClick={()=>setbackground2(!background2)} style={{backgroundColor:background2 && '#10926E'}} >Wed</button>
+                                                    <button className="notifyDay" onClick={()=>setbackground3(!background3)} style={{backgroundColor:background3 && '#10926E'}} >Thur</button>
+                                                    <button className="notifyDay" onClick={()=>setbackground4(!background4)} style={{backgroundColor:background4 && '#10926E'}} >Fri</button>
+                                                    <button className="notifyDay" onClick={()=>setbackground5(!background5)} style={{backgroundColor:background5 && '#10926E'}} >Sat</button>
+                                                    <button className="notifyDay" onClick={()=>setbackground6(!background6)} style={{backgroundColor:background6 && '#10926E'}} >Sun</button>
                                                     </div>
                                                 </div>
 
