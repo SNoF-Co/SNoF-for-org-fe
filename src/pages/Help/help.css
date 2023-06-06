@@ -61,7 +61,11 @@
 }
 .singlefaq p{
     font-size: 14px;
+<<<<<<< HEAD
     font-weight:bold;
+=======
+    font-weight: light;
+>>>>>>> ebc8038 (new page added --help page)
 }
 .upper-help-content{
     width: 100%;
