@@ -14,7 +14,7 @@ import PlayerV from "./components/Videos/videoPlayer";
 import Shower from "./components/Images/imageShower";
 import Settings from "./pages/Settings";
 import Help from "./pages/Help/Help";
-import Logout from "./pages/Logout";
+import Logout from "./pages/Logout/Logout";
 import Navbar from "./components/Navbar/Navbar";
 
 function App() {
