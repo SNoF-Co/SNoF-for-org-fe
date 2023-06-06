@@ -11,8 +11,9 @@ import DashBoard from "./pages/DashBoard";
 import Schedule from "./pages/Schedule/Schedule";
 import FeedbackPage from "./pages/feedback";
 import Settings from "./pages/Settings";
-import Help from "./pages/Help";
+import Help from "./pages/Help/Help";
 import Logout from "./pages/Logout";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
 
@@ -55,8 +56,8 @@ const [activateSideBar,setActivateSideBar] = useState(true)
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Home />}/>
+        <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<RegisterPage />} />
         <Route path="/dashboard" element={<Sample><DashBoard username='Mubaraka Sh.' activateSideBar={activateSideBar}/></Sample>}/>
         <Route path="/analytics" element={<RegisterPage />}/>

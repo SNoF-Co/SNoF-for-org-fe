@@ -4,7 +4,7 @@ import './Schedule.css'
 
 export default function Schedules () {
     return (
-        <div className="schedule--container" style={{marginTop:'4.5%',border:'1px solid'}}>
+        <div className="schedule--container">
             <Calendar />
             <ScheduleList />
         </div>
