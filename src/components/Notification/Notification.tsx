@@ -10,14 +10,16 @@ interface tasks{
 }
 
 const Notifications:React.FC<Props> = ({tasks})=>{
+    let numberofCount = 0
     return(
         <>
             {tasks ?  tasks.map((task:any)=>{
+                numberofCount++;
+                if(numberofCount>3)return null
+                console.log(task)
                 return (
-
                     <div className="notification">
                      <h3>It's remaining for {task.title}</h3>
-                
                     </div>)
                      
             }): (

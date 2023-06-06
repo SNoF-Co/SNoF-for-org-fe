@@ -54,7 +54,7 @@ export interface Organisation {
 
 const DashBoard : React.FC<Props>= ({username,activateSideBar})=>{
 const [memberModal,setMemberModal] = useState(false);
-
+let numberOfCount = 0
 const [timeofSchedule,setTimeofSchedule] = useState('');
 const [background,setbackground] = useState(false)
 const [background1,setbackground1] = useState(false)
@@ -145,8 +145,9 @@ const handleFormSubmit = ()=>{
         description:desc,
         end_time:timeofSchedule
     }).then((data)=>{
-        closeAddSchedule
+        closeAddSchedule()
         console.log(data)
+        console.log('added schedule')
     }).catch((err)=>console.log(err))    
 }
 useEffect(()=>{
@@ -233,13 +234,13 @@ useEffect(()=>{
                                                 <div className="notifyday">
                                                     <label style={{fontSize:'18px',padding:'5px 10px'}}>Notify on </label>
                                                     <div className="days">
-                                                    <button className="notifyDay" onClick={()=>setbackground(!background)} style={{backgroundColor:background && '#10926E'}}>Mon</button>
-                                                    <button className="notifyDay" onClick={()=>setbackground1(!background1)} style={{backgroundColor:background1 && '#10926E'}} >Tue</button>
-                                                    <button className="notifyDay" onClick={()=>setbackground2(!background2)} style={{backgroundColor:background2 && '#10926E'}} >Wed</button>
-                                                    <button className="notifyDay" onClick={()=>setbackground3(!background3)} style={{backgroundColor:background3 && '#10926E'}} >Thur</button>
-                                                    <button className="notifyDay" onClick={()=>setbackground4(!background4)} style={{backgroundColor:background4 && '#10926E'}} >Fri</button>
-                                                    <button className="notifyDay" onClick={()=>setbackground5(!background5)} style={{backgroundColor:background5 && '#10926E'}} >Sat</button>
-                                                    <button className="notifyDay" onClick={()=>setbackground6(!background6)} style={{backgroundColor:background6 && '#10926E'}} >Sun</button>
+                                                    <p className="notifyDay" onClick={()=>setbackground(!background)} style={{backgroundColor:background ? '#10926E' : 'rgba(245, 245, 245, 0.562)',borderRadius:'5px'}}>Mon</p>
+                                                    <p className="notifyDay" onClick={()=>setbackground1(!background1)} style={{backgroundColor:background1 ? '#10926E' : 'rgba(245, 245, 245, 0.562)',borderRadius:'5px'}} >Tue</p>
+                                                    <p className="notifyDay" onClick={()=>setbackground2(!background2)} style={{backgroundColor:background2 ? '#10926E' : 'rgba(245, 245, 245, 0.562)',borderRadius:'5px'}} >Wed</p>
+                                                    <p className="notifyDay" onClick={()=>setbackground3(!background3)} style={{backgroundColor:background3 ? '#10926E' : 'rgba(245, 245, 245, 0.562)',borderRadius:'5px'}} >Thur</p>
+                                                    <p className="notifyDay" onClick={()=>setbackground4(!background4)} style={{backgroundColor:background4 ? '#10926E' : 'rgba(245, 245, 245, 0.562)',borderRadius:'5px'}} >Fri</p>
+                                                    <p className="notifyDay" onClick={()=>setbackground5(!background5)} style={{backgroundColor:background5 ? '#10926E' : 'rgba(245, 245, 245, 0.562)',borderRadius:'5px'}} >Sat</p>
+                                                    <p className="notifyDay" onClick={()=>setbackground6(!background6)} style={{backgroundColor:background6 ? '#10926E' : 'rgba(245, 245, 245, 0.562)',borderRadius:'5px'}} >Sun</p>
                                                     </div>
                                                 </div>
 
@@ -288,7 +289,10 @@ useEffect(()=>{
                         </div>
 
                          {completed.map((completedx,index)=>{
+                               numberOfCount++;
+                               if(numberOfCount>3)return null
                             return (
+                                
                                 <>
                                     <div className="Completed-Task" key={index}> {completedx?.description} </div>
                                 </>

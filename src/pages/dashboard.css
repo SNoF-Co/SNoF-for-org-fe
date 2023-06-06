@@ -521,7 +521,7 @@ display: flex;
 }
 /* ------------------------------------------------MEDIA QUERIES------------------------------------------------ */
 
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 1200px){
     main{
         width: 95vw;
     }
@@ -530,7 +530,7 @@ display: flex;
     }
 }
 
-@media screen and (max-width:900px) {
+@media screen and (max-width:1100px) {
     .container-hero{
         column-gap: 0%;
         grid-template-columns: 60% 40%;
