@@ -19,13 +19,6 @@ import Navbar from "./components/Navbar/Navbar";
 
 function App() {
 
-  interface tasks {
-    id: number;
-    text: string;
-    time: string;
-    duration: string;
-  }
-
   const [tasks,setTasks] = useState([
     {
          id: 0,
