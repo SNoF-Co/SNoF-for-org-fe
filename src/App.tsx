@@ -68,7 +68,6 @@ const [activateSideBar,setActivateSideBar] = useState(true)
         <Route path="/logout" element={<Sample><Logout/></Sample>} />
       </Routes>
     </Router>
-  );
-}
+)}
 
 export default App;
