@@ -1,7 +1,6 @@
 import "./login.css";
-
-import { useEffect } from "react";
-import {useNavigate} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
+import { useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -12,9 +11,10 @@ import SubmitButton from "../../components/SubmitButton/SubmitButton";
 // import Logo from "../../assets/snof-logo.png";
 import { FirstEllipse } from "./../../assets/svg";
 import { SecondEllipse } from "./../../assets/svg";
+import Logo from "../../assets/snof-logo.png";
 
 export default function Login() {
-  useEffect(() => {    
+  useEffect(() => {
     const passwordHide = document.querySelector(".password-hide-icon");
     const passwordShow = document.querySelector(".password-show-icon");
     const passwordField = document.querySelector("#orgPasswd");
@@ -38,7 +38,7 @@ export default function Login() {
       passwordShow?.classList.remove("password-hide-icon");
       passwordShow?.classList.add("active");
     });
-  }, []); 
+  }, []);
 
   const emailLabel = "Email";
   const emailType = "email";
@@ -51,13 +51,13 @@ export default function Login() {
   const passwdId = "orgPasswd";
 
   const loginButtonValue = "Login";
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const handleFormSubmit = (e:any)=>{
-    e.preventDefault()
+  const handleFormSubmit = (e: any) => {
+    e.preventDefault();
 
-    navigate("/dashboard")
-  }
+    navigate("/dashboard");
+  };
 
   return (
     <div className="login">
@@ -67,7 +67,9 @@ export default function Login() {
       </div>
 
       <div className="logo">
-        {/* <img src={Logo} alt="SNoF-logo" /> */}
+        <Link to="/">
+          <img src={Logo} alt="SNoF-logo" />
+        </Link>
       </div>
       <h2>Login into your Organisation account</h2>
       <form onSubmit={handleFormSubmit}>
@@ -84,8 +86,8 @@ export default function Login() {
           id={passwdId}
         />
         <div className="password-hide">
-          <FontAwesomeIcon className="password-show-icon active" icon={faEye}/>
-          <FontAwesomeIcon className="password-hide-icon" icon={faEyeSlash}/>
+          <FontAwesomeIcon className="password-show-icon active" icon={faEye} />
+          <FontAwesomeIcon className="password-hide-icon" icon={faEyeSlash} />
         </div>
         <div>
           <SubmitButton buttonValue={loginButtonValue} />
