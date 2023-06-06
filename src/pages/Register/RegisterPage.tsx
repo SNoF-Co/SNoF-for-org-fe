@@ -124,73 +124,65 @@ export default function RegisterPage() {
           <img src={Logo} alt="SNoF-logo" />
         </Link>
       </div>
-      <form action="#" method="post">
-        <h2 className="text-center">Set up your account</h2>
-        {/* Progress bar */}
-        <div className="progress-bar">
-          <div className="progress" id="progress"></div>
-          <div
-            className="progress-step progress-step-active"
-            data-title="Step 1"
-          ></div>
-          <div className="progress-step" data-title="Half way to finish"></div>
-          <div className="progress-step" data-title="Finish set up"></div>
-        </div>
+      <h2 className="text-center header">Set up your account</h2>
 
-        {/* Steps */}
-        <div className="form-step form-step-active">
-          <Field labelName={orgLabel} type={type} name={orgName} id={id} />
-
-          <div className="">
-            <a href="#" className="btn btn-next width-50 ml-auto">
-              Next
-            </a>
-          </div>
-        </div>
-        <div className="form-step">
-          <div className="locations">
-            <Field
-              labelName={locationNumberLabel}
-              type={locationNumberType}
-              name={locationNumberName}
-              id={locationNumberId}
-            />
-          </div>
-          <div className="btn-group">
-            <a href="#" className="btn btn-prev">
-              Back
-            </a>
-            <a href="#" className="btn btn-next">
-              Next
-            </a>
-          </div>
-        </div>
-        <div className="form-step">
-          <Field
-            labelName={emailLabel}
-            type={emailType}
-            name={emailName}
-            id={emailId}
-          />
-          <Field
-            labelName={passwdLabel}
-            type={passwdType}
-            name={passwdName}
-            id={passwdId}
-          />
-          <div className="password-hide">
-            <FontAwesomeIcon
-              className="password-show-icon active"
-              icon={faEye}
-            />
-            <FontAwesomeIcon className="password-hide-icon" icon={faEyeSlash} />
+      <div className="form-outer">
+        <form action="#" method="post">
+          <div className="page">
+            <div className="title">
+              <div className="field">
+                <div className="label">Organization name</div>
+                <input type="text" name="" id="" />
+              </div>
+              <div className="field">
+                <div className="label">Organization type</div>
+                <select name="orgTypes" id="orgTypes">
+                  <option value=""></option>
+                  <option value="one">Schools</option>
+                </select>
+              </div>
+              <div className="field">
+                <button>Next</button>
+              </div>
+            </div>
           </div>
 
-          <div className="">
-            <SubmitButton buttonValue={submitButtonValue} />
+          {/* 2nd page */}
+
+          <div className="page">
+            <div className="title">
+              <div className="field">
+                <div className="label">Number of locations</div>
+                <input type="number" name="locations" id="locations" />
+              </div>
+
+              <div className="field btns">
+                <button className="prev-1 prev">Previous</button>
+                <button className="next-1 next">Next</button>
+              </div>
+            </div>
           </div>
-        </div>
-      </form>
+
+          {/* 3rd page */}
+
+          <div className="page">
+            <div className="title">
+              <div className="field">
+                <div className="label">email</div>
+                <input type="email" name="" id="" />
+              </div>
+              <div className="field">
+                <div className="label">password</div>
+                <input type="password" name="" id="" />
+              </div>
+              <div className="field btns">
+                <button className="prev-2 prev">Previous</button>
+                <button className="next-2 next">Next</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
