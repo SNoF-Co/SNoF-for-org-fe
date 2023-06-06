@@ -6,7 +6,7 @@ import Login from "./pages/Login/Login";
 import RegisterPage from "./pages/Register/RegisterPage";
 import Sample from "./pages/Sample";
 import "./App.css";
-import Analytics from "./pages/Analytics/analytics";
+// import Analytics from "./pages/Analytics/analytics";
 import DashBoard from "./pages/DashBoard";
 import Schedule from "./pages/Schedule/Schedule";
 import Feedback from "./pages/Feedback/Feedback";
@@ -16,6 +16,8 @@ import Settings from "./pages/Settings";
 import Help from "./pages/Help/Help";
 import Logout from "./pages/Logout/Logout";
 import Navbar from "./components/Navbar/Navbar";
+import ProfilePage from "./pages/Settings/Profile";
+import DataPolicyPage from "./pages/Settings/DataPolicy"
 
 function App() {
 
@@ -61,6 +63,14 @@ const [activateSideBar,setActivateSideBar] = useState(true)
         <Route path="/help" element={<Sample><Help/></Sample>} />
         <Route path="/settings" element={<Sample><Settings/></Sample>} />
         <Route path="/logout" element={<Sample><Logout/></Sample>} />
+        <Route path="/settings/my_profile" element={<Sample><Settings><ProfilePage/></Settings></Sample>}/>
+        <Route path="/settings/data_mode" element={<Sample><Settings><ProfilePage/></Settings></Sample>}/>
+        <Route path="/settings/data_policy" element={<Sample><Settings><DataPolicyPage/></Settings></Sample>}/>
+        <Route path="/settings/about" element={<Sample><Settings><ProfilePage/></Settings></Sample>}/>
+        <Route path="/settings/language" element={<Sample><Settings><ProfilePage/></Settings></Sample>}/>
+        <Route path="/settings/about" element={<Sample><Settings><ProfilePage/></Settings></Sample>}/>
+        <Route path="/settings/terms_of_service" element={<Sample><Settings><ProfilePage/></Settings></Sample>}/>
+        <Route path="/logout" element={<Sample><Logout/></Sample>}/>
       </Routes>
     </Router>
 )}

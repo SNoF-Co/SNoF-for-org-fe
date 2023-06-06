@@ -1,4 +1,7 @@
 import ScheduleList from "../../components/SchedulesList/ScheduleList";
+// <<<<<<< HEAD
+// import Calendar from "../../components/CalendarModule/Calendar"
+// =======
 import Calendar from "../../components/Calendar/Calendar"
 import './Schedule.css'
 

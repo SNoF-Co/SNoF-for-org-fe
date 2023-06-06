@@ -289,8 +289,8 @@ export default function CustomCalendar() {
             </div>
         </div>
     )
-<<<<<<< HEAD
+// <<<<<<< HEAD
 }
-=======
-}
->>>>>>> daacb81 (Errors)
+// =======
+// }
+// >>>>>>> acdaae4482f43fa4c0266fbebb83bbcbaf9f9676

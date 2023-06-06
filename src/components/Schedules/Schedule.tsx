@@ -22,7 +22,7 @@ const Schedule:React.FC<Props> = ({tasks})=>{
             < div className="task">
                 <h3 className="taskTime">  <hr /></h3>
                 <div className="single-task" style={{display:'block'}}>
-                <h4 style={{display:'flex',justifyContent:'space-evenly'}}>hey</h4>
+                <h4 style={{display:'flex',justifyContent:'space-evenly'}}>Lunch with workers</h4>
                 <h6 style={{textAlign:'center'}}>19H00</h6>
                 </div>
                 < Modal />
