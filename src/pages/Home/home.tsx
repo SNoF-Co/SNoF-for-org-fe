@@ -33,7 +33,7 @@ export const Home = () => {
       <div className="top">
         <div className="logo">
           <Link to="/">
-            <img src={Logo} alt="SNoF-logo" />
+            <img src={Logo} alt="Fens-logo" />
           </Link>
         </div>
         <div className="links">
@@ -128,7 +128,7 @@ export const Home = () => {
               </div>
               <div>
                 <FaEnvelope />
-                <p>info@SNoF-Labs.com</p>
+                <p>info@Fens-Labs.com</p>
               </div>
             </div>
             <div className="social-medial">
@@ -146,7 +146,7 @@ export const Home = () => {
               <textarea cols={8} rows={10} placeholder="Message"></textarea>
               <a href="#contact">
                 Send
-                <i></i>
+                {/* <Icon icon={<FaArrowUp/>}/> */}
               </a>
             </form>
           </div>
@@ -160,7 +160,7 @@ export const Home = () => {
           </div>
           <div className="contents">
             <div className="foot-description">
-              <h2>SNoF Technologies</h2>
+              <h2>Fens Technologies</h2>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis,
                 ea quam.chitecto repellendus commodi? Temporibus fugiat pariatur
@@ -189,7 +189,7 @@ export const Home = () => {
             </div>
             <div className="copyright">
               <hr />
-              <p>@copyrights SNoF -All right reserved</p>
+              <p>@copyrights Fens -All right reserved</p>
             </div>
           </div>
         </div>

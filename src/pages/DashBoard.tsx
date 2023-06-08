@@ -1,28 +1,22 @@
 import React from "react";
-import propTypes, { any } from "prop-types";
-import schedulecomp from "../assets/image3.png";
-import addIcon from "../assets/plus-circle1.png";
-import deleteIcon from "../assets/x-circle1.png";
-import right from "../assets/chevron-right.svg";
-import caret from "../assets/caret-down-fill.svg";
+// import schedulecomp from "../assets/image3.png"
+// import addIcon from "../assets/plus-circle1.png"
+// import deleteIcon from "../assets/x-circle1.png"
+// import right from "../assets/chevron-right.svg"
+// import caret from "../assets/caret-down-fill.svg"
 import Calender from "../components/Calender/Calender";
-import Days from "../components/Calender/Days";
-import Schedule from "../components/Schedules/Schedule";
+import Axios from "axios";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./Hero/hero.css";
-import plus from "../assets/+.svg";
-import plusCirc from "../assets/plus-circle-dotted.svg";
-
-import "react-toastify/dist/ReactToastify.css";
 import "./dashboard.css";
+// import plus from "../assets/+.svg"
+// import plusCirc from "../assets/plus-circle-dotted.svg"
 import Notification from "../components/Notification/Notification";
 import { useState, useEffect } from "react";
-import check from "../assets/check1.png";
-import calenderimg from "../assets/calendar-check1.png";
-import dots from "../assets/three-dots.svg";
-import member2 from "../assets/Ellipse48(1).png";
-import { Axios } from "axios";
+// import check from "../assets/check1.png"
+// import calenderimg from "../assets/calendar-check1.png"
+// import dots from "../assets/three-dots.tsx"
+// import member2 from "../assets/Ellipse48(1).png"
 
 const members = [
   {
@@ -41,13 +35,6 @@ const members = [
 
 interface Props {
   username: string;
-  Calender: Function;
-  tasks: object[];
-  firstTasks: object[];
-  completed: object[];
-  time: string;
-  organisations: string[];
-  organsm: object;
   activateSideBar: boolean;
 }
 
@@ -81,27 +68,33 @@ export interface Organisation {
 
 const DashBoard: React.FC<Props> = ({ username, activateSideBar }) => {
   const [memberModal, setMemberModal] = useState(false);
-
+  let numberOfCount = 0;
+  const [timeofSchedule, setTimeofSchedule] = useState("");
   const [background, setbackground] = useState(false);
-
+  const [background1, setbackground1] = useState(false);
+  const [background2, setbackground2] = useState(false);
+  const [background3, setbackground3] = useState(false);
+  const [background4, setbackground4] = useState(false);
+  const [background5, setbackground5] = useState(false);
+  const [background6, setbackground6] = useState(false);
   const [openDrop, setOpenDrop] = useState(false);
   // -------------------------------------------------FOR TASKS VARIABLES--------------------------------------------------------
   const [tasks, setTasks] = useState([
     {
       id: 0,
-      text: "Board meeting",
+      title: "Board meeting",
       time: "10:20PM",
-      duration: "10:20PM to 11:00PM",
+      desc: "10:20PM to 11:00PM",
     },
     {
       id: 1,
-      text: "taking lunch",
+      title: "taking lunch",
       time: "10:20PM",
       duration: "10:20PM to 11:00PM",
     },
     {
       id: 2,
-      text: "Interviewing other members",
+      title: "Interviewing other members",
       time: "10:20PM",
       duration: "10:20PM to 11:00PM",
     },
@@ -128,19 +121,18 @@ const DashBoard: React.FC<Props> = ({ username, activateSideBar }) => {
 
   const [completed, setCompleted] = useState([
     {
-      task: "Check the production of the week",
+      description: "Check the production of the week",
       time: "11:30",
     },
     {
-      task: "Check the production of the week",
+      description: "Check the production of the week",
       time: "11:30",
     },
     {
-      task: "Check the production of the week",
+      description: "Check the production of the week",
       time: "11:30",
     },
   ]);
-
   // --------------FOR ADD SCHEDULE MODAL-------------------------
   const [openAddScheduleModal, setOpenAddSchedule] = useState(false);
 
@@ -150,7 +142,6 @@ const DashBoard: React.FC<Props> = ({ username, activateSideBar }) => {
   const closeAddSchedule = () => {
     setOpenAddSchedule(false);
   };
-
   const deleteNotifications = () => {
     setTasks((tasks) => {
       return tasks.filter((task) => task.id > 3);
@@ -164,16 +155,19 @@ const DashBoard: React.FC<Props> = ({ username, activateSideBar }) => {
     // console.log(daata.value)
     Axios.post("http://localhost:2000/v1/api/schedules", {
       title: title,
-      time: timeofSchedule,
+      start_time: new Date().getHours() + ":" + new Date().getMinutes(),
       description: desc,
+      end_time: timeofSchedule,
     })
       .then((data) => {
-        closeAddSchedule;
+        closeAddSchedule();
         console.log(data);
+        console.log("added schedule");
       })
       .catch((err) => console.log(err));
   };
   useEffect(() => {
+    console.log(new Date().getHours() + ":" + new Date().getMinutes());
     // Axios.get()
     Axios.get("http://localhost:2000/v1/api/schedules").then((results) => {
       console.log(results.data);
@@ -183,388 +177,432 @@ const DashBoard: React.FC<Props> = ({ username, activateSideBar }) => {
   }, []);
   // -----------------------------------------------------------------------------------------------------------
 
-  // --------------------------HANDLING FORM SUBMIT----------------------------------------------
-
   return (
     <main className={!activateSideBar ? "coverwidth" : ""}>
       <div
         className={"container-hero" + `${activateSideBar ? " coverhero" : ""}`}
       >
         {/* --------for the left content */}
-
         <div className="container-left" id="f">
-          <div className="container-left">
-            <div className="welcome-container">
-              <h4>Welcome back {username}</h4>
+          <div className="welcome-container">
+            <h4>Welcome back {username}</h4>
+          </div>
+          <div></div>
+          <div className="schedule-container">
+            <div className="left-schedule-content">
+              <h2>Schedule of today</h2>
+              <h6 style={{ fontSize: "16px" }}>
+                Check the schedule that has to be completed today{" "}
+              </h6>
+              <button className="button-view-schedule">Today's schedule</button>
             </div>
-            <div></div>
-            <div className="schedule-container">
-              <div className="left-schedule-content">
-                <h2>Schedule of today</h2>
-                <h6 style={{ fontSize: "16px" }}>
-                  Check the schedule that has to be completed today{" "}
-                </h6>
-                <button className="button-view-schedule">
-                  Today's schedule
-                </button>
-              </div>
 
-              <img src={schedulecomp} />
-            </div>
-            <div className="addTask">
-              <button className="addSchedule" onClick={openAddSchedule}>
-                <img src={addIcon} style={{ width: "17%", marginLeft: "2%" }} />
-                <h6 style={{}}> ADD SCHEDULE</h6>
-              </button>
+            {/* <img src={"../assets/image3.png"}/> */}
+          </div>
+          <div className="addTask">
+            <button className="addSchedule" onClick={openAddSchedule}>
+              <img
+                src={"../assets/plus-circle1.png"}
+                style={{ width: "17%", marginLeft: "2%" }}
+              />
+              <h6 style={{}}> ADD SCHEDULE</h6>
+            </button>
 
-              {openAddScheduleModal && (
-                <div className="modal">
-                  <div className="overlay">
-                    <div className="addScheduleModal">
-                      <button
-                        className="close-modal"
-                        onClick={closeAddSchedule}
-                        style={{ borderRadius: "10px", borderColor: "#333" }}
+            {openAddScheduleModal && (
+              <div className="modal">
+                <div className="overlay">
+                  <div className="addScheduleModal">
+                    <button
+                      className="close-modal"
+                      onClick={closeAddSchedule}
+                      style={{ borderRadius: "10px", borderColor: "#333" }}
+                    >
+                      close
+                    </button>
+                    <div className="addAScheduleForm">
+                      <form
+                        className="SchedulemodalForm"
+                        onSubmit={(e) => {
+                          // e.preventDefault()
+                          handleFormSubmit();
+                        }}
                       >
-                        close
-                      </button>
+                        <h3>Schedule Event</h3>
 
-                      <div className="addAScheduleForm">
-                        <form
-                          className="SchedulemodalForm"
-                          onSubmit={(e) => {
-                            e.preventDefault();
-                            handleFormSubmit;
-                          }}
-                        >
-                          <h3>Schedule Event</h3>
+                        <div className="form-control">
+                          <label>Time: </label>
+                          <input
+                            type="time"
+                            required
+                            onChange={(e) => setTimeofSchedule(e.target.value)}
+                          />
+                        </div>
 
-                          <div className="form-control">
-                            <label>Time: </label>
-                            <input type="time" required />
-                          </div>
+                        <div className="form-control">
+                          <label>Event: </label>
+                          <textarea
+                            placeholder="Eg. waking up early not miss the train"
+                            onChange={(e) => setDesc(e.target.value)}
+                            required
+                          ></textarea>
+                        </div>
+                        <div className="form-control">
+                          <label>title: </label>
+                          <textarea
+                            placeholder="Eg. Going For Holidays"
+                            onChange={(e) => setTitle(e.target.value)}
+                            required
+                          ></textarea>
+                        </div>
 
-                          <div className="form-control">
-                            <label>Event: </label>
-                            <textarea
-                              placeholder="Eg. Going to sleep"
-                              required
-                            ></textarea>
-                          </div>
-
-                          <div className="form-control">
-                            <label>Sound: </label>
-                            <select required>
-                              <option value="chimes">Chimes</option>
-                              <option value="Xylophone">Xylophone</option>
-                              <option value="Bounce">Bounce</option>
-                              <option value="Echo">Echo</option>
-                              <option value="Ascending">Ascending</option>
-                            </select>
-                          </div>
-
-                          <div className="form-control">
-                            <label>Notify for: </label>
-                            <select required>
-                              <option value="5 Minutes">5 Minutes</option>
-                              <option value="10 Minutes">10 Minutes</option>
-                              <option value="30 Minutes">30 Minutes</option>
-                              <option value="1 Hour">1 Hour</option>
-                              <option value="2 Hours">2 Hours</option>
-                              <option value="1 day">1 Day</option>
-                            </select>
-                          </div>
-
-                          <div className="notifyday">
-                            <label style={{ fontSize: "18px" }}>
-                              Notify on{" "}
-                            </label>
-                            <div className="days">
-                              <button
-                                className="notifyDay"
-                                onClick={() => setbackground(!background)}
-                              >
-                                Mon
-                              </button>
-                              <button
-                                className="notifyDay"
-                                onClick={() => setbackground(!background)}
-                              >
-                                Tue
-                              </button>
-                              <button
-                                className="notifyDay"
-                                onClick={() => setbackground(!background)}
-                              >
-                                Wed
-                              </button>
-                              <button
-                                className="notifyDay"
-                                onClick={() => setbackground(!background)}
-                              >
-                                Thur
-                              </button>
-                              <button
-                                className="notifyDay"
-                                onClick={() => setbackground(!background)}
-                              >
-                                Fri
-                              </button>
-                              <button
-                                className="notifyDay"
-                                onClick={() => setbackground(!background)}
-                              >
-                                Sat
-                              </button>
-                              <button
-                                className="notifyDay"
-                                onClick={() => setbackground(!background)}
-                              >
-                                Sun
-                              </button>
-                            </div>
-                          </div>
-
-                          <div className="form-control">
-                            <label>Location: </label>
-                            <select required>
-                              <option value=""></option>
-                              <option value="">Kigali</option>
-                              <option value="">Muhanga</option>
-                              <option value="">Newyork</option>
-                            </select>
-                          </div>
-
-                          <div className="addmodalbuttons">
-                            <button className="save">Save</button>
-                            <button
-                              className="cancel"
-                              onClick={closeAddSchedule}
+                        {/* <div className="form-control">
+                                                    <label>Sound: </label>
+                                                    <select required>
+                                                        <option value="chimes">Chimes</option>
+                                                        <option value="Xylophone">Xylophone</option>
+                                                        <option value="Bounce">Bounce</option>
+                                                        <option value="Echo">Echo</option>
+                                                        <option value="Ascending">Ascending</option>
+                                                    </select>
+                                                </div> */}
+                        {/* <div className="form-control">
+                                                    <label>Notify for: </label>
+                                                    <select required>
+                                                    <option value="5 Minutes">5 Minutes</option>
+                                                    <option value="10 Minutes">10 Minutes</option>
+                                                    <option value="30 Minutes">30 Minutes</option>
+                                                    <option value="1 Hour">1 Hour</option>
+                                                    <option value="2 Hours">2 Hours</option>
+                                                    <option value="1 day">1 Day</option>
+                                                    </select>
+                                                </div> */}
+                        <div className="notifyday">
+                          <label
+                            style={{ fontSize: "18px", padding: "5px 10px" }}
+                          >
+                            Notify on{" "}
+                          </label>
+                          <div className="days">
+                            <p
+                              className="notifyDay"
+                              onClick={() => setbackground(!background)}
+                              style={{
+                                backgroundColor: background
+                                  ? "#10926E"
+                                  : "rgba(245, 245, 245, 0.562)",
+                                borderRadius: "5px",
+                              }}
                             >
-                              cancel
-                            </button>
+                              Mon
+                            </p>
+                            <p
+                              className="notifyDay"
+                              onClick={() => setbackground1(!background1)}
+                              style={{
+                                backgroundColor: background1
+                                  ? "#10926E"
+                                  : "rgba(245, 245, 245, 0.562)",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              Tue
+                            </p>
+                            <p
+                              className="notifyDay"
+                              onClick={() => setbackground2(!background2)}
+                              style={{
+                                backgroundColor: background2
+                                  ? "#10926E"
+                                  : "rgba(245, 245, 245, 0.562)",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              Wed
+                            </p>
+                            <p
+                              className="notifyDay"
+                              onClick={() => setbackground3(!background3)}
+                              style={{
+                                backgroundColor: background3
+                                  ? "#10926E"
+                                  : "rgba(245, 245, 245, 0.562)",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              Thur
+                            </p>
+                            <p
+                              className="notifyDay"
+                              onClick={() => setbackground4(!background4)}
+                              style={{
+                                backgroundColor: background4
+                                  ? "#10926E"
+                                  : "rgba(245, 245, 245, 0.562)",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              Fri
+                            </p>
+                            <p
+                              className="notifyDay"
+                              onClick={() => setbackground5(!background5)}
+                              style={{
+                                backgroundColor: background5
+                                  ? "#10926E"
+                                  : "rgba(245, 245, 245, 0.562)",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              Sat
+                            </p>
+                            <p
+                              className="notifyDay"
+                              onClick={() => setbackground6(!background6)}
+                              style={{
+                                backgroundColor: background6
+                                  ? "#10926E"
+                                  : "rgba(245, 245, 245, 0.562)",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              Sun
+                            </p>
                           </div>
-                        </form>
-                      </div>
+                        </div>
+
+                        <div className="form-control">
+                          <label>Location: </label>
+                          <select required>
+                            <option value="" nonce="true"></option>
+                            <option value="">Kigali</option>
+                            <option value="">Muhanga</option>
+                            <option value="">Newyork</option>
+                          </select>
+                        </div>
+
+                        <div className="addmodalbuttons">
+                          {/* <button className="save">Save</button> */}
+                          <input
+                            type="submit"
+                            value="save"
+                            className="save"
+                            style={{ borderRadius: "10px" }}
+                          />
+                          <button className="cancel" onClick={closeAddSchedule}>
+                            cancel
+                          </button>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>
-              )}
+              </div>
+            )}
+          </div>
+          <div className="notifications-placeholder">
+            <div className="notif-header">
+              <h5 style={{ paddingTop: "1rem" }}>Notifications</h5>
+              <button
+                className="deleteNotification"
+                onClick={deleteNotifications}
+                style={{ cursor: "pointer" }}
+              >
+                <img
+                  src="../assets/plus-circle1.png"
+                  style={{ width: "17%", fontSize: "21px" }}
+                />
+                <h6 style={{ color: "#b73434" }}> DELETE</h6>
+              </button>
             </div>
 
-            <div className="notifications-placeholder">
-              <div className="notif-header">
-                <h5 style={{ paddingTop: "1rem" }}>Notifications</h5>
-                <button
-                  className="deleteNotification"
-                  onClick={deleteNotifications}
-                  style={{ cursor: "pointer" }}
+            <div id="notifications" className="notification-container">
+              <Notification tasks={tasks} />
+            </div>
+
+            <h6
+              style={{
+                alignItems: "center",
+                cursor: "pointer",
+                textAlign: "right",
+                color: "green",
+              }}
+            >
+              View more notifications{" "}
+              <span>
+                {" "}
+                <img
+                  src="../assets/chevron-right.svg"
+                  style={{
+                    height: "10px",
+                    padding: "3px 4px 0px",
+                    color: "#10926E",
+                  }}
+                />
+              </span>
+            </h6>
+          </div>
+
+          <div className="completedTask-placeholder">
+            <div className="completed-header">
+              <h5 style={{ paddingTop: "1rem" }}>Tasks</h5>
+            </div>
+
+            {completed.map((completedx, index) => {
+              numberOfCount++;
+              if (numberOfCount > 3) return null;
+              return (
+                <>
+                  <div className="Completed-Task" key={index}>
+                    {" "}
+                    {completedx?.description}{" "}
+                  </div>
+                </>
+              );
+            })}
+
+            <h6
+              style={{
+                alignItems: "center",
+                cursor: "pointer",
+                textAlign: "right",
+                color: "green",
+              }}
+            >
+              View more content
+            </h6>
+          </div>
+        </div>
+        {/* ---------------------for the right content  */}
+        <div className="container-right">
+          <div className="dropdown">
+            <div
+              className="select-header"
+              onClick={() => {
+                setOpenDrop(!openDrop);
+              }}
+            >
+              <h6>Organisation:</h6>
+              <div
+                className="select-organsm"
+                style={{ display: "flex", gap: "5%" }}
+              >
+                <h6 className="selected">{organsm.name}</h6>
+                <span
+                  className={`select-caret ${openDrop ? "rotate-caret" : ""}`}
                 >
-                  <img
-                    src={deleteIcon}
-                    style={{ width: "17%", fontSize: "21px" }}
-                  />
-                  <h6 style={{ color: "#b73434" }}> DELETE</h6>
-                </button>
-              </div>
-
-              <div id="notifications" className="notification-container">
-                <Notification tasks={tasks} />
-              </div>
-
-              <h6
-                style={{
-                  alignItems: "center",
-                  cursor: "pointer",
-                  textAlign: "right",
-                }}
-              >
-                View more notifications{" "}
-                <span>
-                  {" "}
-                  <img
-                    src={right}
-                    style={{
-                      height: "10px",
-                      padding: "3px 4px 0px",
-                      color: "#10926E",
-                    }}
-                  />
+                  <img src="../assets/caret-down-fill.svg" />
                 </span>
-              </h6>
-            </div>
-
-            <div className="completedTask-placeholder">
-              <div className="completed-header">
-                <h5 style={{ paddingTop: "1rem" }}>Completed Tasks</h5>
               </div>
-
-              {completed.map((complete, index) => {
-                return (
-                  <>
-                    <div className="Completed-Task" key={index}>
-                      <img src={calenderimg} /> {complete.task}{" "}
-                      <img
-                        src={check}
-                        style={{ position: "absolute", right: "0%" }}
-                      />
-                    </div>
-                  </>
-                );
-              })}
-
-              <h6
-                style={{
-                  alignItems: "center",
-                  cursor: "pointer",
-                  textAlign: "right",
-                }}
-              >
-                View more content{" "}
-                <span>
-                  {" "}
-                  <img
-                    src={right}
-                    style={{ height: "10px", padding: "3px 4px 0px" }}
-                  />
-                </span>
-              </h6>
             </div>
           </div>
-          {/* ---------------------for the right content  */}
-          <div className="container-right">
-            <div className="dropdown">
-              <div
-                className="select-header"
-                onClick={() => {
-                  setOpenDrop(!openDrop);
-                }}
-              >
-                <h6>Organisation:</h6>
-                <div
-                  className="select-organsm"
-                  style={{ display: "flex", gap: "5%" }}
-                >
-                  <h6 className="selected">{organsm.name}</h6>
-                  <span
-                    className={`select-caret ${openDrop ? "rotate-caret" : ""}`}
-                  >
-                    <img src={caret} />
-                  </span>
-                </div>
+          {openDrop ? "" : ""}
+          {openDrop && (
+            <div className={`dropmenuContainer $`}>
+              <h6 style={{ fontSize: "17px" }}>Choose the Organisation</h6>
+
+              <ul className="dropdown-menu">
+                {organisations.map((organisation) => {
+                  return (
+                    <div
+                      className="dropdown-item"
+                      onClick={() => {
+                        setOrgansm({ name: organisation.name });
+                        setOpenDrop(!openDrop);
+                      }}
+                    >
+                      <img src="../assets/check1.png" /> {organisation.name}
+                    </div>
+                  );
+                })}
+              </ul>
+              <div className="addOrganisation">
+                <button className="addOrgan">
+                  <img src="" style={{ width: "13%" }} /> Add
+                </button>
               </div>
             </div>
-            {openDrop ? "" : ""}
-            {openDrop && (
-              <div className={`dropmenuContainer $`}>
-                <h6 style={{ fontSize: "17px" }}>Choose the Organisation</h6>
+          )}
+          <Calender
+            month={nameOfMonth}
+            date={date}
+            day={day}
+            openAddSchedule={openAddSchedule}
+          />
+          {/* <ToastContainer
+                           position="top-right"
+                           autoClose={3500}
+                           hideProgressBar={false}
+                           newestOnTop={false}
+                           closeOnClick
+                           rtl={false}
+                           pauseOnFocusLoss
+                           draggable
+                           pauseOnHover
+                           theme="colored"
+                         /> */}
 
-                <ul className="dropdown-menu">
-                  {organisations.map((organisation) => {
-                    return (
-                      <div
-                        className="dropdown-item"
-                        onClick={() => {
-                          setOrgansm({ name: organisation.name });
-                          setOpenDrop(!openDrop);
-                        }}
-                      >
-                        <img src={check} /> {organisation.name}
-                      </div>
-                    );
-                  })}
-                </ul>
-                <div className="addOrganisation">
-                  <button className="addOrgan">
-                    <img src={plusCirc} style={{ width: "13%" }} /> Add
+          <div className="team-members-container">
+            <div className="title">
+              <h2>Team-members</h2>
+            </div>
+            <div className="teamMembers">
+              {members.map((member) => {
+                return (
+                  <div
+                    className="teamMember"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      width: "87%",
+                      height: "20%",
+                      border: "1px #CDC2C2 solid",
+                      borderRadius: "10px",
+                    }}
+                  >
+                    <img src="../assets/Ellipse48(1).png" />
+                    <h3 style={{ fontSize: "15px", textAlign: "left" }}>
+                      {member.title}
+                    </h3>
+                    <img
+                      src="../assets/three-dots.tsx"
+                      onClick={() => {
+                        setMemberModal(!memberModal);
+                      }}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+
+            {memberModal && (
+              <div className="remove-or-add-member">
+                <div className="title">
+                  <h6>Remove a member ?</h6>
+                </div>
+
+                <div className="pop-body">
+                  <button
+                    className="addMember"
+                    onClick={() => setMemberModal(!memberModal)}
+                  >
+                    Remove
+                  </button>
+                  <button
+                    className="view"
+                    onClick={() => setMemberModal(!memberModal)}
+                  >
+                    View details
                   </button>
                 </div>
               </div>
             )}
 
-            <Calender
-              month={nameOfMonth}
-              date={date}
-              day={day}
-              openAddSchedule={openAddSchedule}
-            />
-
-            <ToastContainer
-              position="top-right"
-              autoClose={3500}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="colored"
-            />
-
-            <div className="team-members-container">
-              <div className="title">
-                <h2>Team-members</h2>
-              </div>
-              <div className="teamMembers">
-                {members.map((member) => {
-                  return (
-                    <div
-                      className="teamMember"
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        width: "87%",
-                        height: "20%",
-                        border: "1px #CDC2C2 solid",
-                        borderRadius: "10px",
-                      }}
-                    >
-                      <img src={member2} />
-                      <h3 style={{ fontSize: "15px", textAlign: "left" }}>
-                        {member.title}
-                      </h3>
-                      <img
-                        src={dots}
-                        onClick={() => {
-                          setMemberModal(!memberModal);
-                        }}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-
-              {memberModal && (
-                <div className="remove-or-add-member">
-                  <div className="title">
-                    <h6>Remove a member ?</h6>
-                  </div>
-
-                  <div className="pop-body">
-                    <button
-                      className="addMember"
-                      onClick={() => setMemberModal(!memberModal)}
-                    >
-                      Remove
-                    </button>
-                    <button
-                      className="view"
-                      onClick={() => setMemberModal(!memberModal)}
-                    >
-                      View details
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              <div className="addTeamMember">
-                <button className="addTeam">
-                  <img src={plus} style={{ width: "13%" }} />{" "}
-                  <h4 style={{ fontSize: "13px" }}>Add a team-mate</h4>
-                </button>
-              </div>
+            <div className="addTeamMember">
+              <button className="addTeam">
+                <img src="../assets/+.svg" style={{ width: "13%" }} />{" "}
+                <h4 style={{ fontSize: "13px" }}>Add a team-mate</h4>
+              </button>
             </div>
           </div>
         </div>
