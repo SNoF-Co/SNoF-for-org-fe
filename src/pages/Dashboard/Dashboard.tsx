@@ -9,7 +9,7 @@ import Axios from "axios";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
 import './dashboard.css'
-// import plus from "../assets/+.svg"
+import plus from "../assets/+.svg"
 // import plusCirc from "../assets/plus-circle-dotted.svg"
 import Notification from "../../components/Notification/Notification"
 import { useState,useEffect } from "react";
@@ -30,6 +30,7 @@ const  members=[
     },
 ]
 
+// const mainColor="#367588"
 
 interface Props{
     username: string
@@ -227,7 +228,7 @@ useEffect(()=>{
                                                     <button className="notifyDay" onClick={()=>setbackground(!background)}>Mon</button>
                                                     <button className="notifyDay" onClick={()=>setbackground(!background)}>Tue</button>
                                                     <button className="notifyDay" onClick={()=>setbackground(!background)}>Wed</button>
-                                                    <button className="notifyDay" onClick={()=>setbackground(!background)}>Thur</button>
+                                                    <button className="notifyDay" onClick={()=>setbackground(!background)}style={{backgroundColor:"#367588"}}>Thur</button>
                                                     <button className="notifyDay" onClick={()=>setbackground(!background)}>Fri</button>
                                                     <button className="notifyDay" onClick={()=>setbackground(!background)}>Sat</button>
                                                     <button className="notifyDay" onClick={()=>setbackground(!background)}>Sun</button>
@@ -341,7 +342,7 @@ useEffect(()=>{
                          
                          <div className="team-members-container">
                             <div className="title">
-                                <h2>Team-members</h2>
+                                <h2>Team members</h2>
                             </div>
                             <div className="teamMembers">
                                      {members.map((member)=>{

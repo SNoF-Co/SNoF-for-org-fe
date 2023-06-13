@@ -1,22 +1,22 @@
 import React from "react";
-// import schedulecomp from "../assets/image3.png"
-// import addIcon from "../assets/plus-circle1.png"
-// import deleteIcon from "../assets/x-circle1.png"
-// import right from "../assets/chevron-right.svg"
-// import caret from "../assets/caret-down-fill.svg"
+import schedulecomp from "../assets/image3.png"
+import addIcon from "../assets/plus-circle1.png"
+import deleteIcon from "../assets/x-circle1.png"
+import right from "../assets/chevron-right.svg"
+import caret from "../assets/caret-down-fill.svg"
 import Calender from "../components/Calender/Calender";
 import Axios from "axios";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./dashboard.css";
-// import plus from "../assets/+.svg"
-// import plusCirc from "../assets/plus-circle-dotted.svg"
+import plus from "../assets/+.svg"
+import plusCirc from "../assets/plus-circle-dotted.svg"
 import Notification from "../components/Notification/Notification";
 import { useState, useEffect } from "react";
-// import check from "../assets/check1.png"
-// import calenderimg from "../assets/calendar-check1.png"
-// import dots from "../assets/three-dots.tsx"
-// import member2 from "../assets/Ellipse48(1).png"
+import check from "../assets/check1.png"
+import calenderimg from "../assets/calendar-check1.png"
+import dots from "../assets/three-dots.svg"
+import member2 from "../assets/Ellipse48(1).png"
 
 const members = [
   {
@@ -102,7 +102,7 @@ const DashBoard: React.FC<Props> = ({ username, activateSideBar }) => {
 
   // ---------------------------------------------------------------------------------------------------------------------------------
   // ---------------------------------------------------FOR VARIABLES ORGANISATIONS-----------------------------------------------------
-  const [organsm, setOrgansm] = useState({
+  const [organization, setOrganization] = useState({
     name: "Morncast",
   });
   const [organisations, setOrganisations] = useState<Organisation[]>([
@@ -202,8 +202,8 @@ const DashBoard: React.FC<Props> = ({ username, activateSideBar }) => {
           <div className="addTask">
             <button className="addSchedule" onClick={openAddSchedule}>
               <img
-                src={"../assets/plus-circle1.png"}
-                style={{ width: "17%", marginLeft: "2%" }}
+                src={plusCirc}
+                style={{ width: "17%", marginLeft: "2%",}}
               />
               <h6 style={{}}> ADD SCHEDULE</h6>
             </button>
@@ -370,8 +370,8 @@ const DashBoard: React.FC<Props> = ({ username, activateSideBar }) => {
                           </div>
                         </div>
 
-                        <div className="form-control">
-                          <label>Location: </label>
+                        <div className="form-control location">
+                          <label id="location">Location: </label>
                           <select required>
                             <option value="" nonce="true"></option>
                             <option value="">Kigali</option>
@@ -424,7 +424,7 @@ const DashBoard: React.FC<Props> = ({ username, activateSideBar }) => {
                 alignItems: "center",
                 cursor: "pointer",
                 textAlign: "right",
-                color: "green",
+                color: "#367588",
               }}
             >
               View more notifications{" "}
@@ -465,7 +465,7 @@ const DashBoard: React.FC<Props> = ({ username, activateSideBar }) => {
                 alignItems: "center",
                 cursor: "pointer",
                 textAlign: "right",
-                color: "green",
+                color: "#367588",
               }}
             >
               View more content
@@ -483,14 +483,14 @@ const DashBoard: React.FC<Props> = ({ username, activateSideBar }) => {
             >
               <h6>Organisation:</h6>
               <div
-                className="select-organsm"
+                className="select-organization"
                 style={{ display: "flex", gap: "5%" }}
               >
-                <h6 className="selected">{organsm.name}</h6>
+                <h6 className="selected">{organization.name}</h6>
                 <span
                   className={`select-caret ${openDrop ? "rotate-caret" : ""}`}
                 >
-                  <img src="../assets/caret-down-fill.svg" />
+                  <img src={caret} />
                 </span>
               </div>
             </div>
@@ -506,11 +506,11 @@ const DashBoard: React.FC<Props> = ({ username, activateSideBar }) => {
                     <div
                       className="dropdown-item"
                       onClick={() => {
-                        setOrgansm({ name: organisation.name });
+                        setOrganization({ name: organisation.name });
                         setOpenDrop(!openDrop);
                       }}
                     >
-                      <img src="../assets/check1.png" /> {organisation.name}
+                      <img src={check} /> {organisation.name}
                     </div>
                   );
                 })}
@@ -600,7 +600,7 @@ const DashBoard: React.FC<Props> = ({ username, activateSideBar }) => {
 
             <div className="addTeamMember">
               <button className="addTeam">
-                <img src="../assets/+.svg" style={{ width: "13%" }} />{" "}
+                <img src={plus} style={{ width: "13%" }} />{" "}
                 <h4 style={{ fontSize: "13px" }}>Add a team-mate</h4>
               </button>
             </div>

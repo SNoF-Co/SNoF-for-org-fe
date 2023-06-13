@@ -221,7 +221,7 @@ const Hero: React.FC<Props> = ({ username, activateSideBar }) => {
                           <label>Event: </label>
                           <textarea
                             placeholder="Eg. Going to sleep"
-                            required
+                            required 
                           ></textarea>
                         </div>
 
