@@ -100,7 +100,7 @@ export default function RegisterPage() {
 
   const locationNumberLabel = "Number of locations";
   const locationNumberType = "number";
-  const locationNumberName = "locationNumber";
+  const locationNumberName = "locations";
   const locationNumberId = "locNumberId";
 
   const emailLabel = "Email";

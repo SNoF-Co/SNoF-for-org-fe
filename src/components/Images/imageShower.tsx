@@ -1,4 +1,3 @@
-import React from "react";
 import images from "./../../assets/images/ground1.png";
 import Images from "./../../assets/images/dom1.jfif";
 import image from "./../../assets/images/dom2.jfif";
