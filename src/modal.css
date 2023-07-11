@@ -98,10 +98,3 @@ body.active-modal {
     width: 35%;
     background: #9f1e1e;
 }
-
-.model-dots-img{
-    position: absolute !important;
-    top: 3%;
-    right: 1%;
-
-}

@@ -1,8 +1,5 @@
 import "./home.css";
 import { Link } from "react-router-dom";
-
-import Logo from "../../assets/snof-logo.png";
-
 import { Card, Card2, Icon } from "../../components/card";
 import {
   Bell,
@@ -32,9 +29,7 @@ export const Home = () => {
     <div className="home">
       <div className="top">
         <div className="logo">
-          <Link to="/">
-            <img src={Logo} alt="SNoF-logo" />
-          </Link>
+          <img src="../../public/log.png" alt="snof logo" />
         </div>
         <div className="links">
           <a href="#">Home</a>
