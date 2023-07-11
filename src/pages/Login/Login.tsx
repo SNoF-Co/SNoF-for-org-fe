@@ -1,9 +1,7 @@
 import "./login.css";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {useNavigate} from "react-router-dom"
-import { Link } from "react-router-dom";
-import { useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -14,6 +12,7 @@ import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import Logo from "../../assets/snof-logo.png";
 import { FirstEllipse } from "./../../assets/svg";
 import { SecondEllipse } from "./../../assets/svg";
+import { toast } from "react-toastify";
 
 export default function Login() {
   useEffect(() => {    
@@ -43,22 +42,50 @@ export default function Login() {
   }, []); 
 
   const emailLabel = "Email";
-  const emailType = "email";
-  const emailName = "orgEmail";
-  const emailId = "orgEmail";
+  const emailType = "email"
+  const emailName = "email";
+  const emailId = "email";
 
   const passwdLabel = "Password";
   const passwdType = "password";
-  const passwdName = "passwd";
-  const passwdId = "orgPasswd";
+  const passwdName = "password";
+  const passwdId = "password";
 
   const loginButtonValue = "Login";
   const navigate = useNavigate()
 
-  const handleFormSubmit = (e:any)=>{
+  const [formData, setFormData] = useState({email: "", password: ""})
+  
+
+  const handleFormSubmit = async (e:any)=>{
     e.preventDefault()
 
-    navigate("/dashboard")
+    const res = await fetch(`${import.meta.env.VITE_BASE_URL}/login`, {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {"Content-Type": "application/json"}
+    })
+
+    const data = await res.json()
+
+    if(data.data) {
+      return navigate("/dashboard")
+    }
+    if(data.message === "Invalid Email or Password") {
+      toast.error("Login failed")
+    }
+
+  }
+  
+  const handleChange = (e: any) => {
+    const {name, value} = e.target
+
+    setFormData((oldData: any) => {
+      return {
+        ...oldData,
+        [name] : value
+      }
+    })
   }
 
   return (
@@ -69,9 +96,7 @@ export default function Login() {
       </div>
 
       <div className="logo">
-        <Link to="/">
-          <img src={Logo} alt="SNoF-logo" />
-        </Link>
+        <img src={Logo} alt="SNoF-logo" />
       </div>
       <h2>Login into your Organisation account</h2>
       <form onSubmit={handleFormSubmit}>
@@ -80,12 +105,16 @@ export default function Login() {
           type={emailType}
           name={emailName}
           id={emailId}
+          value={formData.email}
+          onChange={handleChange}
         />
         <Field
           labelName={passwdLabel}
           type={passwdType}
           name={passwdName}
           id={passwdId}
+          value={formData.password}
+          onChange={handleChange}
         />
         <div className="password-hide">
           <FontAwesomeIcon className="password-show-icon active" icon={faEye}/>
