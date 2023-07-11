@@ -5,18 +5,15 @@ import Login from "./pages/Login/Login";
 import RegisterPage from "./pages/Register/RegisterPage";
 import Sample from "./pages/Sample";
 import "./App.css";
-// import Analytics from "./pages/Analytics/analytics";
+import Analytics from "./pages/Analytics/analytics";
 import DashBoard from "./pages/DashBoard";
 import Schedule from "./pages/Schedule/Schedule";
 import Feedback from "./pages/Feedback/Feedback";
 import PlayerV from "./components/Videos/videoPlayer";
 import Shower from "./components/Images/imageShower";
 import Settings from "./pages/Settings";
-import Help from "./pages/Help/Help";
 import Logout from "./pages/Logout/Logout";
-import Navbar from "./components/Navbar/Navbar";
-import ProfilePage from "./pages/Settings/Profile";
-import DataPolicyPage from "./pages/Settings/DataPolicy"
+import Help from "./pages/Help/Help";
 
 function App() {
 
@@ -56,18 +53,13 @@ const [activateSideBar,setActivateSideBar] = useState(true)
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<RegisterPage />} />
         <Route path="/dashboard" element={<Sample><DashBoard username='Mubaraka Sh.' activateSideBar={activateSideBar}/></Sample>}/>
-        <Route path="/schedule" element={<Sample><Schedule tasks={singleTask}/></Sample>}/>
-        <Route path="/feedback" element={<Sample><Feedback/></Sample>}/>
-        <Route path="/help" element={<Sample><Help/></Sample>}/>
-        <Route path="/settings" element={<Sample><Settings><ProfilePage/></Settings></Sample>}/>
-        <Route path="/settings/my_profile" element={<Sample><Settings><ProfilePage/></Settings></Sample>}/>
-        <Route path="/settings/data_mode" element={<Sample><Settings><ProfilePage/></Settings></Sample>}/>
-        <Route path="/settings/data_policy" element={<Sample><Settings><DataPolicyPage/></Settings></Sample>}/>
-        <Route path="/settings/about" element={<Sample><Settings><ProfilePage/></Settings></Sample>}/>
-        <Route path="/settings/language" element={<Sample><Settings><ProfilePage/></Settings></Sample>}/>
-        <Route path="/settings/about" element={<Sample><Settings><ProfilePage/></Settings></Sample>}/>
-        <Route path="/settings/terms_of_service" element={<Sample><Settings><ProfilePage/></Settings></Sample>}/>
-        <Route path="/logout" element={<Sample><Logout/></Sample>}/>
+        <Route path="/analytics" element={<Sample><Analytics tasks={tasks}/></Sample>}/>
+        <Route path="/schedule" element={<Sample><Schedule tasks={singleTask}/></Sample>}/>=
+        <Route path="/feedback" element={<Sample><Feedback><Shower/></Feedback></Sample>} />
+        <Route path="/feedback-videos" element={<Sample><Feedback><PlayerV/></Feedback></Sample>} />
+        <Route path="/help" element={<Sample><Help/></Sample>} />
+        <Route path="/settings" element={<Sample><Settings/></Sample>} />
+        <Route path="/logout" element={<Logout/>} />
       </Routes>
     </Router>
   );
