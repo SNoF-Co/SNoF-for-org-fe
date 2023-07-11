@@ -116,11 +116,7 @@ export default function Login() {
           value={formData.password}
           onChange={handleChange}
         />
-        <div className="password-hide">
-          <FontAwesomeIcon className="password-show-icon active" icon={faEye}/>
-          <FontAwesomeIcon className="password-hide-icon" icon={faEyeSlash}/>
-        </div>
-        <div>
+        <div className="logi">
           <SubmitButton buttonValue={loginButtonValue} />
         </div>
       </form>

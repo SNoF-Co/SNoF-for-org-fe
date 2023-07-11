@@ -219,14 +219,6 @@ export default function RegisterPage() {
             value={formData.password}
             onChange={handleChange}
           />
-          <div className="password-hide">
-            <FontAwesomeIcon
-              className="password-show-icon active"
-              icon={faEye}
-            />
-            <FontAwesomeIcon className="password-hide-icon" icon={faEyeSlash} />
-          </div>
-
           <div onClick={handleFormSubmit}>
             <SubmitButton buttonValue={submitButtonValue} />
           </div>
