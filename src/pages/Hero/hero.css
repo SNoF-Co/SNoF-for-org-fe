@@ -48,7 +48,7 @@ display: flex;
 .welcome-container h4{
     padding: 6% 20% 3% 6% ;
     font-size: 1.2em;
-    color: #fff;
+    color: #000;
 }
 .schedule-container{
     width: 100%;
