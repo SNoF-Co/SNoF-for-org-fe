@@ -5,7 +5,7 @@ import Login from "./pages/Login/Login";
 import RegisterPage from "./pages/Register/RegisterPage";
 import Sample from "./pages/Sample";
 import "./App.css";
-import Analytics from "./pages/Analytics/analytics";
+import Analytics from "./pages/Analytics/Analytics";
 import DashBoard from "./pages/DashBoard";
 import Schedule from "./pages/Schedule/Schedule";
 import Feedback from "./pages/Feedback/Feedback";
@@ -54,7 +54,7 @@ const [activateSideBar,setActivateSideBar] = useState(true)
         <Route path="/signup" element={<RegisterPage />} />
         <Route path="/dashboard" element={<Sample><DashBoard username='Mubaraka Sh.' activateSideBar={activateSideBar}/></Sample>}/>
         <Route path="/analytics" element={<Sample><Analytics tasks={tasks}/></Sample>}/>
-        <Route path="/schedule" element={<Sample><Schedule tasks={singleTask}/></Sample>}/>=
+        <Route path="/schedule" element={<Sample><Schedule tasks={singleTask}/></Sample>}/>
         <Route path="/feedback" element={<Sample><Feedback><Shower/></Feedback></Sample>} />
         <Route path="/feedback-videos" element={<Sample><Feedback><PlayerV/></Feedback></Sample>} />
         <Route path="/help" element={<Sample><Help/></Sample>} />

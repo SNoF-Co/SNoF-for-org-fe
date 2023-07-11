@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import Sidebar from '../../components/Sidebar/side'
-import Analytics from '../Analytics/analytics'
+import Analytics from '../Analytics/Analytics'
 import Hero from '../Hero/Hero'
 import './Dashboard.css'
 
