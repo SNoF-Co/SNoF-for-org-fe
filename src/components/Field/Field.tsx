@@ -3,7 +3,7 @@ export default function Field(props: any) {
   return (
     <div className="field">
       <label className="text-bold">{props.labelName}</label>
-      <input type={props.type} name={props.name} id={props.id} />
+      <input type={props.type} name={props.name} id={props.id} value={props.value} onChange={props.onChange}/>
     </div>
   );
 }
