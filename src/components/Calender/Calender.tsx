@@ -29,7 +29,7 @@ import Schedule from "../Schedules/Schedule";
             </div>
             <div className="calender-main">
                 < Days date={date-1}  day={day-1}  color=""/>
-                < Days date={date} day={day}  color="#10926E"/>
+                < Days date={date} day={day}  color="#436e7a"/>
                 < Days date={date+1} day={day+1}  color=""/>
                 < Days date={date+2} day={day+2}  color=""/>
                 < Days date={date+3} day={day-3} color=""/>

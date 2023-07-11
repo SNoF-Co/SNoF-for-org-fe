@@ -24,7 +24,7 @@ main{
 .container-left{
     width: 95%;
     background: #EAEAEA;
-    border-right: 2px solid #10926E;
+    border-right: 2px solid #436e7a;
     padding: 2% ;
     position: relative;
 }
@@ -38,7 +38,7 @@ display: flex;
 }
 
 .welcome-container{
-    background: #10926E;
+    background: #436e7a;
     width: 70%;
     height: 8%;
     border-radius: 10px;
@@ -69,7 +69,7 @@ display: flex;
     margin: 1rem 0 0 2rem;
 }
 .left-schedule-content>h2{
-    color: #10926E;
+    color: #436e7a;
     font-weight: 900;
 }
 .left-schedule-content>h6{
@@ -79,7 +79,7 @@ display: flex;
 .button-view-schedule{
     width: 63%;
     height: 25%;
-    background: #10926E;
+    background: #436e7a;
     border: none;
     border-radius: 10px;
     font-size: 1em;
@@ -109,7 +109,7 @@ display: flex;
 }
 
 .Toastify__toast--success {
-    background-color: #10926E;
+    background-color: #436e7a;
   }
   
 .addSchedule{
@@ -250,7 +250,7 @@ display: flex;
     font-size: 18px;
     font-weight: 800;
     color: #fff;
-    background: #10926E;
+    background: #436e7a;
 }
 
 .rotate-caret{
@@ -381,7 +381,7 @@ display: flex;
 .SchedulemodalForm h3{
     width: 80%;
     height: 8%;
-    color: #367588;
+    color: #436e7a;
     text-align: left;
     font-size: 20px;
 }
@@ -412,7 +412,7 @@ display: flex;
     display: flex;
     flex-direction: column;
     gap: 2%;
-    color: #367588;
+    color: #436e7a;
     /* font-size: 15px; */
     font-weight: 800;
 
@@ -438,7 +438,7 @@ display: flex;
 .form-control label{
     font-size: 18px;
     font-weight: 800;
-    color: #367588;
+    color: #436e7a;
 }
 .form-control input:focus ,select:focus , textarea:focus{
     outline: 2px #367588 solid;
@@ -460,11 +460,11 @@ display: flex;
     border: none;
 }
 .save{
-    background: #367588;
+    background: #436e7a;
     color: #fff;
 }
 .cancel{
-    color: #367588;
+    color: #436e7a;
 }
 .remove-or-add-member{
     width: 50%;
@@ -514,7 +514,7 @@ display: flex;
 .title h6{
     font-size: 18px;
     margin-top: -4%;
-    color: #10926E;
+    color: #436e7a;
 }
 .title h2{
     font-size: 18px;

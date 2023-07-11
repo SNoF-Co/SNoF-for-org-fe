@@ -353,7 +353,7 @@ const handleFormSubmit = ()=>{
                             <div className="teamMembers">
                                      {members.map((member)=>{
                                         return (
-                                            <div className="teamMember" style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:'87%',height:'20%',border:'1px #CDC2C2 solid',borderRadius:'10px'}}>
+                                            <div className="teamMember" style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:'87%',height:'20%',border:'1px #436e7a solid',borderRadius:'10px'}}>
                                                 <img src={member2} /> 
                                                 <h3 style={{fontSize:'15px',textAlign:'left'}}>{member.title}</h3> 
                                                 <img src={dots}  onClick= {()=>{setMemberModal(!memberModal)}}/> 
