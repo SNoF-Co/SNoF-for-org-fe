@@ -26,7 +26,7 @@
     padding-left: 0 2%;
 }
 .right-help-content h4{
-    font-size: 15px;
+    /* font-size: 15px; */
     padding: 0 5%;
 }
 .faqs-container{
@@ -60,7 +60,7 @@
     height: 30px;
 }
 .singlefaq p{
-    font-size: 14px;
+    /* font-size: 14px; */
     font-weight:bold;
 }
 .upper-help-content{
@@ -95,7 +95,7 @@
     width: 90%;
     text-align: left;
     padding-bottom: 3%;
-    font-size: 18px;
+    /* font-size: 18px; */
 }
 .help-form{
     width: 80%;
@@ -139,7 +139,7 @@
     background: #367588;
     border-radius: 10px;
     color: #fff;
-    font-size: 20px;
+    /* font-size: 20px; */
     font-weight: 700;
     cursor: pointer;
 }
@@ -147,7 +147,7 @@
 .form-container h3{
     width: 70%;
     text-align: right;
-    font-size: 17px;
+    /* font-size: 17px; */
 }
 
 .bottom-content{
@@ -168,14 +168,14 @@
     border-radius: 10px;
     border: none;
     color: #fff;
-    font-size: 17px;
+    /* font-size: 17px; */
     font-weight: 600;
     cursor: pointer;
 }
 
-.bottom-content .left-bottom-content h3{
+/* .bottom-content .left-bottom-content h3{
     font-size: 18px;
-}
+} */
 
 .bottom-content .left-bottom-content h6{
     color: rgba(0, 0, 0, 0.6);

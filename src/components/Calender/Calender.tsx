@@ -17,7 +17,8 @@ import Schedule from "../Schedules/Schedule";
     const tasks={
         time:'9:00 AM',
         task:'Board meeting',
-        duration:'9:00AM to 10:30AM'
+        duration:'9:00AM to 10:30AM',
+        id: "1"
     }
     
     return(
@@ -29,23 +30,18 @@ import Schedule from "../Schedules/Schedule";
             </div>
             <div className="calender-main">
                 < Days date={date-1}  day={day-1}  color=""/>
-                < Days date={date} day={day}  color="#10926E"/>
+                < Days date={date} day={day}  color="#367588"/>
                 < Days date={date+1} day={day+1}  color=""/>
                 < Days date={date+2} day={day+2}  color=""/>
                 < Days date={date+3} day={day-3} color=""/>
 
             </div>
-
             
-            
-
            </div>
            <div className="schedule-saved-tasks" style={{height:'100%',width:'97%'}}>
                 <div className="schedule" style={{height:'100%'}}>
                     < Schedule tasks={tasks}/>
                     < Schedule tasks={tasks}/>
-                    < Schedule tasks={tasks}/>
-
                 </div>
             </div>
         </div>

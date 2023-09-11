@@ -9,7 +9,7 @@ interface Props{
     setActivateSideBar:Function,
     activateSideBar: boolean
 }
-export default function Dashboard (props) {
+export default function Dashboard () {
 const [activateSideBar,setActivateSideBar] = useState(true)
 
     return (
@@ -19,7 +19,7 @@ const [activateSideBar,setActivateSideBar] = useState(true)
                 <Sidebar activateSideBar={activateSideBar}/>
             </div>
             <div className="section-container--one">
-                <Hero username={'Mr Abushali'} Calender={undefined} tasks={[]} firstTasks={[]} completed={[]} time={''} organisations={[]} organsm={undefined} activateSideBar={false} />
+                <Hero username={'Mr Abushali'} tasks={[]} firstTasks={[]} completed={[]} time={''} organisations={[]} activateSideBar={false} />
             </div>
         </div>
     )

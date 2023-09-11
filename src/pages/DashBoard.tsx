@@ -73,16 +73,33 @@ const [tasks,setTasks] = useState([
         text:'taking lunch',
         time:'10:20PM',
         duration:'10:20PM to 11:00PM'
-   },
-   {
-    id: 2,
-    text:'Interviewing other members',
-    time:'10:20PM',
-    duration:'10:20PM to 11:00PM'
-}
+    },
+    {
+        id: 1,
+        text:'taking lunch',
+        time:'10:20PM',
+        duration:'10:20PM to 11:00PM'
+    },
+    {
+        id: 1,
+        text:'taking lunch',
+        time:'10:20PM',
+        duration:'10:20PM to 11:00PM'
+    },
+    {
+        id: 1,
+        text:'taking lunch',
+        time:'10:20PM',
+        duration:'10:20PM to 11:00PM'
+    },
+    {
+        id: 1,
+        text:'taking lunch',
+        time:'10:20PM',
+        duration:'10:20PM to 11:00PM'
+    }
 ])
 
-// ---------------------------------------------------------------------------------------------------------------------------------
 // ---------------------------------------------------FOR VARIABLES ORGANISATIONS-----------------------------------------------------
 const [organsm,setOrgansm] = useState({
     name: 'Morncast'
@@ -99,8 +116,6 @@ const [organisations,setOrganisations] = useState<Organisation[]>([
         name: "eCard"
     }
 ])
-
-// -------------------------------------------------------------------------------------------------------------------------------------
 
 const [completed,setCompleted]= useState([
     {
@@ -143,8 +158,6 @@ const handleFormSubmit = ()=>{
         <main className={ !activateSideBar ? 'coverwidth' : ''}>
             <div className={"container-hero" + `${ activateSideBar? ' coverhero' : ''}`}>
                 {/* --------for the left content */}
-
-            
                 
                 <div className="container-left" id="f">
                    <div className="welcome-container">
@@ -153,9 +166,9 @@ const handleFormSubmit = ()=>{
                         <div></div>
                    <div className="schedule-container">
                     <div className="left-schedule-content">
-                    <h2>Schedule of today</h2>
-                    <h6 style={{fontSize:'16px'}}>Check the schedule that has to be completed today </h6>
-                    <button className="button-view-schedule">Today's schedule</button>
+                        <h2>Schedule of today</h2>
+                        <h6 style={{fontSize:'16px'}}>Check the schedule that has to be completed today </h6>
+                        <button className="button-view-schedule">Today's schedule</button>
                     </div>
 
                     <img src={schedulecomp} />
@@ -259,8 +272,8 @@ const handleFormSubmit = ()=>{
                    <div className="notifications-placeholder">
 
                         <div className="notif-header">
-                            <h5 style={{paddingTop:'1rem'}}>Notifications</h5>
-                        <button className="deleteNotification"  onClick={deleteNotifications} style={{cursor:'pointer'}}><img src={deleteIcon} style={{ width: '17%',fontSize:'21px'}} /><h6 style={{color:'#b73434'}}> DELETE</h6></button>
+                            <h5>Notifications</h5>
+                            <button className="deleteNotification"  onClick={deleteNotifications} style={{cursor:'pointer'}}><img src={deleteIcon} style={{fontSize:'21px', padding: "1% 2%"}} /><h6 style={{color:'#b73434'}}> DELETE</h6></button>
                         </div>
 
                         <div id="notifications" className="notification-container">
@@ -268,7 +281,7 @@ const handleFormSubmit = ()=>{
 
                         </div>
 
-                        <h6 style={{alignItems:'center',cursor:'pointer',textAlign:'right'}}>View more notifications <span>  <img src={right} style={{height:'10px',padding:'3px 4px 0px',color:'#10926E'}}/></span></h6>
+                        <h6 style={{alignItems:'center',cursor:'pointer',textAlign:'right', marginTop: "1rem"}}>View more notifications <span>  <img src={right} style={{height:'10px',padding:'3px 4px 0px',color:'#10926E'}}/></span></h6>
                    </div>
 
                    <div className="completedTask-placeholder" >

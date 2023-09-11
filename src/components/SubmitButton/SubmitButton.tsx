@@ -4,7 +4,7 @@ export default function SubmitButton(props: any) {
   return (
     <div className="button">
       <input
-        className="ml-auto width-50"
+        className="ml-auto" style={{width: "140px"}}
         type="submit"
         value={props.buttonValue}
       />

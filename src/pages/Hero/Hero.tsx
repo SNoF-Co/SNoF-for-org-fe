@@ -8,7 +8,6 @@ import right from "../../assets/chevron-right.svg"
 import caret from "../../assets/caret-down-fill.svg"
 import Calender from "../../components/Calender/Calender";
 import Days from "../../components/Calender/Days";
-import Schedule from "../../components/Schedules/Schedule";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
 import './hero.css'
@@ -38,13 +37,13 @@ const  members=[
 
 interface Props{
     username: string
-    Calender: Function,
+    // Calender: Function,
     tasks: object[],
     firstTasks: object[],
     completed:object[],
     time: string,
     organisations: string[],
-    organsm: object,
+    // organsm: object,
     activateSideBar: boolean
     
 }
@@ -88,13 +87,7 @@ const [tasks,setTasks] = useState([
         text:'taking lunch',
         time:'10:20PM',
         duration:'10:20PM to 11:00PM'
-   },
-   {
-    id: 2,
-    text:'Interviewing other members',
-    time:'10:20PM',
-    duration:'10:20PM to 11:00PM'
-}
+   }
 ])
 
 // ---------------------------------------------------------------------------------------------------------------------------------

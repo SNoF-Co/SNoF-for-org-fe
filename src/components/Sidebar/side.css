@@ -1,6 +1,6 @@
 .container {
-    width: 240px !important;
-    height: 900px !important;
+    width: 310px !important;
+    height: 1000px !important;
     background-color: #367588;
     position: relative;
     top: 70px;
@@ -40,9 +40,9 @@
 
 .link-container .link-item {
     width: 20%;
-    height: 20px;
+    height: 100%;
     text-align: center;
-    font-size: 25px;
+    /* font-size: 250%; */
     padding-top: 10px;
     margin-left: 2%;
 }
@@ -52,7 +52,7 @@
     margin-left: 15px;
     text-align: left;
     padding-top: 11px;
-    font-size: 18px;
+    font-size: 120%;
 }
 
 .link-container:hover {

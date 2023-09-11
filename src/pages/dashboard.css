@@ -22,9 +22,9 @@ main{
     top: 0;
 }
 .container-left{
-    width: 95%;
+    width: 100%;
     background: #EAEAEA;
-    border-right: 2px solid #10926E;
+    border-right: 2px solid #367588;
     padding: 2% ;
     position: relative;
 }
@@ -38,7 +38,7 @@ display: flex;
 }
 
 .welcome-container{
-    background: #10926E;
+    background: #000;
     width: 70%;
     height: 8%;
     border-radius: 10px;
@@ -51,7 +51,7 @@ display: flex;
 }
 .schedule-container{
     width: 100%;
-    height: 26%;
+    height: 19%;
     margin-top: 1.5rem;
     background: #FFFFFF;
     border-radius: 10px;
@@ -66,10 +66,10 @@ display: flex;
     flex-direction: column;
 /* justify-content: center; */
     font-size: 16px;
-    margin: 1rem 0 0 2rem;
+    margin: 0rem 0 0 1rem;
 }
 .left-schedule-content>h2{
-    color: #10926E;
+    color: #367588;
     font-weight: 900;
 }
 .left-schedule-content>h6{
@@ -79,7 +79,7 @@ display: flex;
 .button-view-schedule{
     width: 63%;
     height: 25%;
-    background: #10926E;
+    background: #367588;
     border: none;
     border-radius: 10px;
     font-size: 1em;
@@ -109,12 +109,12 @@ display: flex;
 }
 
 .Toastify__toast--success {
-    background-color: #10926E;
+    background-color: #367588;
   }
   
 .addSchedule{
     width: 30%;
-    height: 95%;
+    height: 85%;
     background: #fff;
     border: none;
     border-radius: 10px;
@@ -122,35 +122,38 @@ display: flex;
     justify-content: center;
     align-items: center;
     gap: 10%;
-    font-size: 23px;
+    font-size: 20px;
     cursor: pointer;
     font-weight: 900;
 }
 
 .notifications-placeholder,.completedTask-placeholder{
-    width: 90%;
-    height: 22%;
+    width: 100%;
+    height: fit-content;
     background: #fff;
     padding: 2%;
     margin-top: 1rem;
     border-radius: 10px;
     position: relative;
-    border: 1px #10926E solid;
+    border: 1px #367588 solid;
 }
 .completedTask-placeholder h6{
     text-align: right;
 }
 .notification-container{
-    height: 60%;
+    /* height: 60%; */
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    overflow: auto !important;
 }
 .notif-header,.completed-header{
     width: 100%;
     height: 24%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 .deleteNotification{
     width: 25%;
@@ -183,7 +186,7 @@ display: flex;
     z-index: 1;
     background: #fff;
     margin: 1% 0 0 -4%;
-    border: 1px #10926E solid;
+    border: 1px #367588 solid;
     border-radius: 10px ;
 }
 .select-header{
@@ -205,7 +208,7 @@ display: flex;
     min-height: 15%;
     max-height: fit-content;
     background: #fff;
-    border: 1px #10926E solid;
+    border: 1px #367588 solid;
     border-radius: 10px ;
     margin-top: -4%;
     transition: 3.4s linear ease;
@@ -250,7 +253,7 @@ display: flex;
     font-size: 18px;
     font-weight: 800;
     color: #fff;
-    background: #10926E;
+    background: #367588;
 }
 
 .rotate-caret{
@@ -349,15 +352,14 @@ display: flex;
 /* ----------------------------------STYLES FOR ADD SCHEDULE MODAL ------------------------------- */
 .addScheduleModal{
     width: 30vw;
-    height: 90vh;
+    height: 98vh;
     display: flex;
     position: absolute;
     border-radius: 10px;
-    top: 5%;
+    top: 1%;
     left: 35%;
     right: 0%;
     align-items: center;
-
     justify-content: center;
     background: #D9D9D9;
 }
@@ -374,8 +376,8 @@ display: flex;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2%;
-    margin-top: 20%;
+    /* gap: 2%; */
+    /* margin-top: 20%; */
     justify-items: center;
 }
 .SchedulemodalForm h3{
@@ -390,9 +392,7 @@ display: flex;
     height: 18%;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     justify-content: left;
-    /* gap: 6%; */
 }
 
 .SchedulemodalForm .form-control input, select, .SchedulemodalForm .form-control textarea{
@@ -514,7 +514,7 @@ display: flex;
 .title h6{
     font-size: 18px;
     margin-top: -4%;
-    color: #10926E;
+    color: #367588;
 }
 .title h2{
     font-size: 18px;
@@ -653,7 +653,7 @@ margin-bottom: 3%;
     }
 
     .team-members-container{
-        border: 2px #10926E solid;
+        border: 2px #367588 solid;
         height: 40vh;
     }
     .modal-content{

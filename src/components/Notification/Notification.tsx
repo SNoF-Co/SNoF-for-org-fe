@@ -18,9 +18,11 @@ const Notifications:React.FC<Props> = ({tasks})=>{
                     <div className="notification">
 
                     
-                     <h3>It's remaining for {task.text}</h3>
+                        <p>It's remaining for {task.text}</p>
+                        <h3 style={{cursor:"pointer"}}>tap for more</h3>
                 
-                    </div>)
+                    </div>
+                    )
                      
             }): (
                 <h3>There are no notifications</h3>
